@@ -1,0 +1,57 @@
+Gesture Training Summary
+=====================
+
+Gesture: A
+Samples: 20
+-----------------
+Gesture: B
+Samples: 20
+-----------------
+Gesture: C
+Samples: 20
+-----------------
+Gesture: D
+Samples: 20
+-----------------
+Gesture: E
+Samples: 20
+-----------------
+Gesture: F
+Samples: 20
+-----------------
+Gesture: G
+Samples: 20
+-----------------
+Gesture: H
+Samples: 20
+-----------------
+Gesture: I
+Samples: 20
+-----------------
+Gesture: J
+Samples: 20
+-----------------
+Gesture: K
+Samples: 20
+-----------------
+Gesture: L
+Samples: 20
+-----------------
+Gesture: M
+Samples: 20
+-----------------
+Gesture: N
+Samples: 20
+-----------------
+Gesture: O
+Samples: 20
+-----------------
+Gesture: P
+Samples: 20
+-----------------
+Gesture: Q
+Samples: 20
+-----------------
+Gesture: R
+Samples: 20
+-----------------
