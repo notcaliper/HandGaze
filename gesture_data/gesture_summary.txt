@@ -2,56 +2,80 @@ Gesture Training Summary
 =====================
 
 Gesture: A
-Samples: 20
+Samples: 50
 -----------------
 Gesture: B
-Samples: 20
+Samples: 50
 -----------------
 Gesture: C
-Samples: 20
+Samples: 50
 -----------------
 Gesture: D
-Samples: 20
+Samples: 50
 -----------------
 Gesture: E
-Samples: 20
+Samples: 50
 -----------------
 Gesture: F
-Samples: 20
+Samples: 50
 -----------------
 Gesture: G
-Samples: 20
+Samples: 50
 -----------------
 Gesture: H
-Samples: 20
+Samples: 50
 -----------------
 Gesture: I
-Samples: 20
+Samples: 50
 -----------------
 Gesture: J
-Samples: 20
+Samples: 50
 -----------------
 Gesture: K
-Samples: 20
+Samples: 50
 -----------------
 Gesture: L
-Samples: 20
+Samples: 50
 -----------------
 Gesture: M
-Samples: 20
+Samples: 50
 -----------------
 Gesture: N
-Samples: 20
+Samples: 50
 -----------------
 Gesture: O
-Samples: 20
+Samples: 50
 -----------------
 Gesture: P
-Samples: 20
+Samples: 50
 -----------------
 Gesture: Q
-Samples: 20
+Samples: 50
 -----------------
 Gesture: R
-Samples: 20
+Samples: 50
+-----------------
+Gesture: S
+Samples: 50
+-----------------
+Gesture: T
+Samples: 50
+-----------------
+Gesture: U
+Samples: 50
+-----------------
+Gesture: V
+Samples: 50
+-----------------
+Gesture: W
+Samples: 50
+-----------------
+Gesture: X
+Samples: 50
+-----------------
+Gesture: Y
+Samples: 50
+-----------------
+Gesture: Z
+Samples: 50
 -----------------

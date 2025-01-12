@@ -1,0 +1,11 @@
+{
+  "image_path": "test_images/sample_hand.jpg",
+  "annotated_path": "analyzed_data/sample_hand_annotated.jpg",
+  "image_dimensions": {
+    "height": 480,
+    "width": 640
+  },
+  "hands_detected": 0,
+  "landmarks_data": [],
+  "timestamp": "2025-01-11T16:51:09.020877"
+}

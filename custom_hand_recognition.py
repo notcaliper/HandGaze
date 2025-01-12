@@ -13,14 +13,15 @@ class CustomHandGestureRecognizer:
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         self.cap.set(cv2.CAP_PROP_FPS, 30)
+        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # Minimize frame buffer
         
-        # Initialize MediaPipe Hands
+        # Initialize MediaPipe Hands with optimized settings
         self.mp_hands = mp.solutions.hands
         self.hands = self.mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=1,
-            min_detection_confidence=0.7,
-            min_tracking_confidence=0.6
+            min_detection_confidence=0.5,  # Slightly lower for better performance
+            min_tracking_confidence=0.5
         )
         self.mp_draw = mp.solutions.drawing_utils
         
@@ -30,13 +31,21 @@ class CustomHandGestureRecognizer:
             print("No gesture data found! Please run gesture_trainer.py first.")
             raise FileNotFoundError("No gesture data available")
         
+        # Pre-compute gesture features for faster comparison
+        self.precomputed_gesture_features = self.precompute_gesture_features()
+        
         # Performance monitoring
-        self.fps_buffer = deque(maxlen=30)
+        self.fps_buffer = deque(maxlen=10)  # Reduced buffer size
         self.prev_frame_time = 0
         
         # Gesture smoothing
-        self.gesture_buffer = deque(maxlen=5)
-    
+        self.gesture_buffer = deque(maxlen=3)  # Reduced buffer size
+        
+        # Frame processing optimization
+        self.process_every_n_frames = 2
+        self.frame_count = 0
+        self.last_gesture = "Unknown"
+
     def load_latest_gesture_data(self):
         """Load the most recent gesture data file"""
         data_dir = 'gesture_data'
@@ -56,6 +65,34 @@ class CustomHandGestureRecognizer:
         with open(os.path.join(data_dir, latest_file), 'rb') as f:
             return pickle.load(f)
     
+    def precompute_gesture_features(self):
+        """Pre-compute features for all gesture samples"""
+        precomputed = {}
+        for gesture_name, gesture_samples in self.gesture_data.items():
+            precomputed[gesture_name] = []
+            for sample in gesture_samples:
+                sample_2d = [[p[0], p[1]] for p in sample]
+                angles = self.calculate_angles(sample_2d)
+                rel_distances = self.get_relative_distances(sample_2d)
+                precomputed[gesture_name].append({
+                    'angles': angles,
+                    'rel_distances': rel_distances
+                })
+        return precomputed
+
+    def get_relative_distances(self, landmarks):
+        """Calculate relative distances between key points"""
+        key_points = [4, 8, 12, 16, 20]
+        distances = np.zeros((len(key_points) * (len(key_points) - 1)) // 2)
+        idx = 0
+        for i in range(len(key_points)):
+            p1 = landmarks[key_points[i]]
+            for j in range(i + 1, len(key_points)):
+                p2 = landmarks[key_points[j]]
+                distances[idx] = np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+                idx += 1
+        return distances
+
     def calculate_angles(self, landmarks):
         """Calculate angles between finger joints for better recognition"""
         angles = []
@@ -90,92 +127,52 @@ class CustomHandGestureRecognizer:
             
         return angles
 
-    def calculate_landmark_similarity(self, landmarks1, landmarks2):
-        """Calculate similarity between two sets of landmarks using multiple features"""
-        # Convert landmarks to numpy arrays
-        landmarks1_array = np.array([[p[0], p[1]] for p in landmarks1])
-        landmarks2_array = np.array([[p[0], p[1]] for p in landmarks2])
+    def calculate_landmark_similarity(self, landmarks1, landmarks2_features):
+        """Optimized similarity calculation using pre-computed features"""
+        # Calculate features for current landmarks
+        angles1 = np.array(self.calculate_angles(landmarks1))
+        rel_dist1 = self.get_relative_distances(landmarks1)
         
-        # 1. Position similarity (weighted less now)
-        position_distances = np.sqrt(np.sum((landmarks1_array - landmarks2_array) ** 2, axis=1))
-        position_similarity = np.mean(position_distances) * 0.4  # Reduced weight
-        
-        # 2. Angle similarity (weighted more)
-        angles1 = self.calculate_angles(landmarks1)
-        angles2 = self.calculate_angles(landmarks2)
-        angle_diff = np.mean(np.abs(np.array(angles1) - np.array(angles2)))
-        angle_similarity = angle_diff * 0.6  # Increased weight
-        
-        # 3. Calculate relative distances between key points
-        def get_relative_distances(landmarks):
-            # Key points: thumb tip, index tip, middle tip, ring tip, pinky tip
-            key_points = [4, 8, 12, 16, 20]
-            distances = []
-            for i in range(len(key_points)):
-                for j in range(i + 1, len(key_points)):
-                    p1 = landmarks[key_points[i]]
-                    p2 = landmarks[key_points[j]]
-                    dist = np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
-                    distances.append(dist)
-            return np.array(distances)
-        
-        rel_dist1 = get_relative_distances(landmarks1)
-        rel_dist2 = get_relative_distances(landmarks2)
-        relative_similarity = np.mean(np.abs(rel_dist1 - rel_dist2))
+        # Compare with pre-computed features
+        angle_diff = np.mean(np.abs(angles1 - landmarks2_features['angles']))
+        rel_dist_diff = np.mean(np.abs(rel_dist1 - landmarks2_features['rel_distances']))
         
         # Combine similarities with weights
-        total_similarity = (position_similarity + angle_similarity + relative_similarity) / 3
-        return total_similarity
-        
+        return angle_diff * 0.6 + rel_dist_diff * 0.4
+
     def recognize_gesture(self, current_landmarks):
-        """Recognize gesture by comparing with trained data"""
+        """Optimized gesture recognition"""
         if not current_landmarks:
             return "Unknown"
+        
+        # Process only every nth frame
+        self.frame_count += 1
+        if self.frame_count % self.process_every_n_frames != 0:
+            return self.last_gesture
             
         # Convert current landmarks to list format
         current_landmarks_list = [[lm.x, lm.y] for lm in current_landmarks.landmark]
         
-        # Compare with each stored gesture
-        gesture_scores = {}
+        # Compare with pre-computed features
+        best_score = float('inf')
+        best_gesture = "Unknown"
         
-        for gesture_name, gesture_samples in self.gesture_data.items():
-            similarities = []
-            for sample in gesture_samples:
-                sample_2d = [[p[0], p[1]] for p in sample]
-                similarity = self.calculate_landmark_similarity(current_landmarks_list, sample_2d)
-                similarities.append(similarity)
+        for gesture_name, gesture_features in self.precomputed_gesture_features.items():
+            # Compare with only the first few samples for each gesture
+            scores = [self.calculate_landmark_similarity(current_landmarks_list, features) 
+                     for features in gesture_features[:3]]  # Limit to first 3 samples
+            avg_score = np.mean(scores)
             
-            # Use the average of top 3 best matches for this gesture
-            top_similarities = sorted(similarities)[:3]
-            gesture_scores[gesture_name] = np.mean(top_similarities) if top_similarities else float('inf')
+            if avg_score < best_score:
+                best_score = avg_score
+                best_gesture = gesture_name
         
-        # Find the best match
-        if not gesture_scores:
-            return "Unknown"
-            
-        best_gesture = min(gesture_scores.items(), key=lambda x: x[1])
+        if best_score > 0.25:
+            best_gesture = "Unknown"
         
-        # More stringent threshold
-        if best_gesture[1] > 0.25:  # Adjusted threshold
-            return "Unknown"
-            
-        # Enhanced gesture smoothing with confidence weighting
-        self.gesture_buffer.append((best_gesture[0], best_gesture[1]))
-        
-        if len(self.gesture_buffer) >= 3:
-            # Weight recent gestures more heavily
-            weights = np.exp(-0.5 * np.arange(len(self.gesture_buffer)))
-            weights = weights / np.sum(weights)
-            
-            # Count weighted occurrences
-            gesture_counts = {}
-            for (gesture, score), weight in zip(self.gesture_buffer, weights):
-                gesture_counts[gesture] = gesture_counts.get(gesture, 0) + weight
-                
-            return max(gesture_counts.items(), key=lambda x: x[1])[0]
-            
-        return best_gesture[0]
-    
+        self.last_gesture = best_gesture
+        return best_gesture
+
     def process_frame(self, frame):
         # Convert BGR to RGB
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
