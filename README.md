@@ -69,7 +69,7 @@ graph LR
 
 1️⃣ **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/HandGaze.git
+git clone https://github.com/notcaliper/HandGaze.git
 cd HandGaze
 ```
 
