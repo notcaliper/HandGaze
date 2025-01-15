@@ -11,13 +11,56 @@
 
 > *Transform your hand gestures into digital communication with AI-powered recognition* ✨
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](#-documentation)
+[Features](docs/FEATURES.md) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](docs/README.md)
 
 ---
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/notcaliper/HandGaze/main/docs/demo.gif" alt="HandGaze Demo" width="600"/>
 </p>
+
+</div>
+
+## 📚 Quick Documentation
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+### 📖
+[Full Documentation](docs/README.md)
+
+Complete guide
+
+</td>
+<td align="center" width="25%">
+
+### ✨
+[Features Guide](docs/FEATURES.md)
+
+All features
+
+</td>
+<td align="center" width="25%">
+
+### 🎯
+[API Reference](docs/README.md#-api-reference)
+
+Technical details
+
+</td>
+<td align="center" width="25%">
+
+### 🔧
+[Troubleshooting](docs/README.md#-troubleshooting)
+
+Common issues
+
+</td>
+</tr>
+</table>
 
 </div>
 
@@ -34,8 +77,13 @@ graph LR
     C --> D[🎯 Gesture Recognition]
     D --> E[💭 Word Processing]
     E --> F[📝 Sentence Creation]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#bbf,stroke:#333,stroke-width:2px
+    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
+    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
+    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
+    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
+    style E fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
+    style F fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
+    linkStyle default stroke:#333333,stroke-width:2px
 ```
 
 </div>
@@ -50,6 +98,8 @@ graph LR
 | 🤚 Hand Tracking | 📝 Sentence Building | ⚡ High Performance |
 | 🔤 ASL Support | ⌫ Smart Backspace | 📊 Visual Feedback |
 | ✨ Custom Gestures | 💡 Auto-Correction | 🎮 Gesture Control |
+
+[View Full Features Guide](docs/FEATURES.md) 📚
 
 </div>
 
