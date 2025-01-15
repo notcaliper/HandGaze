@@ -111,6 +111,16 @@ graph LR
 
 ### ✨ New Features
 
+- **Sentence Creation**
+  - Build complete sentences
+  - Smart word spacing
+  - Line wrapping support
+  
+- **Enhanced Text Editing**
+  - Context-aware backspace
+  - Word suggestion system
+  - Faster gesture response (1.5s)
+
 </td>
 <td width="50%">
 
@@ -205,6 +215,9 @@ HandGaze/
 ```
 
 ## 🤝 Contributing
+
+We welcome contributions! Here's how you can help:
+
 - 🐛 Report bugs and issues
 - 💡 Suggest new features
 - 🔧 Submit pull requests
