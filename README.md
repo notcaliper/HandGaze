@@ -11,13 +11,56 @@
 
 > *Transform your hand gestures into digital communication with AI-powered recognition* ✨
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](#-documentation)
+[Features](docs/FEATURES.md) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](docs/README.md)
 
 ---
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/notcaliper/HandGaze/main/docs/demo.gif" alt="HandGaze Demo" width="600"/>
 </p>
+
+</div>
+
+## 📚 Quick Documentation
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+### 📖
+[Full Documentation](docs/README.md)
+
+Complete guide
+
+</td>
+<td align="center" width="25%">
+
+### ✨
+[Features Guide](docs/FEATURES.md)
+
+All features
+
+</td>
+<td align="center" width="25%">
+
+### 🎯
+[API Reference](docs/README.md#-api-reference)
+
+Technical details
+
+</td>
+<td align="center" width="25%">
+
+### 🔧
+[Troubleshooting](docs/README.md#-troubleshooting)
+
+Common issues
+
+</td>
+</tr>
+</table>
 
 </div>
 
@@ -56,7 +99,7 @@ graph LR
 | 🔤 ASL Support | ⌫ Smart Backspace | 📊 Visual Feedback |
 | ✨ Custom Gestures | 💡 Auto-Correction | 🎮 Gesture Control |
 
-[View Full Features Guide](FEATURES.md) 📚
+[View Full Features Guide](docs/FEATURES.md) 📚
 
 </div>
 

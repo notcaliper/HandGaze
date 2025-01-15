@@ -544,25 +544,18 @@ Improve Docs
 
 <table>
 <tr>
-<td align="center" width="33%">
-
-[![Discord](https://img.shields.io/badge/Join-Discord-blue?style=for-the-badge&logo=discord)](https://discord.gg/handgaze)
-
-Chat with us
-
-</td>
-<td align="center" width="33%">
+<td align="center" width="50%">
 
 [![Issues](https://img.shields.io/badge/Report-Issues-red?style=for-the-badge&logo=github)](https://github.com/notcaliper/HandGaze/issues)
 
-Report problems
+Report problems on GitHub
 
 </td>
-<td align="center" width="33%">
+<td align="center" width="50%">
 
-[![Email](https://img.shields.io/badge/Send-Email-green?style=for-the-badge&logo=gmail)](mailto:support@handgaze.com)
+[![Email](https://img.shields.io/badge/Send-Email-green?style=for-the-badge&logo=gmail)](mailto:akshaymanbhaw27@gmail.com)
 
-Email support
+Contact support team
 
 </td>
 </tr>
