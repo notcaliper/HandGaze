@@ -8,7 +8,7 @@ import os
 from typing import List, Dict, Optional
 from offline_dictionary import OfflineDictionary
 
-class CustomHandGestureRecognizer:
+class HandRecognition:
     def __init__(self):
         # Initialize video capture with optimized settings
         self.cap = cv2.VideoCapture(0)
@@ -391,7 +391,7 @@ class CustomHandGestureRecognizer:
 
 if __name__ == "__main__":
     try:
-        recognizer = CustomHandGestureRecognizer()
+        recognizer = HandRecognition()
         recognizer.run()
     except FileNotFoundError:
         print("\nPlease run gesture_trainer.py first to create your custom gesture dataset!")

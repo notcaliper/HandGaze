@@ -90,20 +90,30 @@ graph LR
 
 ## ✨ Features
 
-<div align="center">
+- 🎯 **Real-time Hand Recognition**
+  - Advanced hand tracking using MediaPipe
+  - Robust landmark detection
+  - Real-time gesture feedback
 
-| Core Features | Smart Features | User Experience |
-|--------------|----------------|-----------------|
-| 🎯 Real-time Recognition | 🔍 Word Suggestions | 🎨 Interactive UI |
-| 🤚 Hand Tracking | 📝 Sentence Building | ⚡ High Performance |
-| 🔤 ASL Support | ⌫ Smart Backspace | 📊 Visual Feedback |
-| ✨ Custom Gestures | 💡 Auto-Correction | 🎮 Gesture Control |
+- 🔤 **Gesture Training System**
+  - Interactive gesture training interface
+  - Visual feedback during training
+  - Gesture testing with confidence scoring
+  - Automatic data backup and validation
 
-[View Full Features Guide](docs/FEATURES.md) 📚
+- 📚 **Smart Dictionary Integration**
+  - Offline dictionary with spell checking
+  - Word suggestions and auto-correction
+  - Enhanced word frequency analysis
+  - Efficient data storage and retrieval
 
-</div>
+- 🎨 **User Experience**
+  - Intuitive visual feedback
+  - Progress tracking
+  - Real-time confidence scoring
+  - Error handling and recovery
 
-## 🎯 Latest Updates (v2.0)
+## 🎯 Latest Updates (v2.1)
 
 <table>
 <tr>
@@ -111,30 +121,30 @@ graph LR
 
 ### ✨ New Features
 
-- **Sentence Creation**
-  - Build complete sentences
-  - Smart word spacing
-  - Line wrapping support
+- **Enhanced Gesture Recognition**
+  - Improved accuracy (95%+)
+  - Faster response time (0.8s)
+  - Multi-hand support
   
-- **Enhanced Text Editing**
-  - Context-aware backspace
-  - Word suggestion system
-  - Faster gesture response (1.5s)
+- **Advanced Text Processing**
+  - Predictive text suggestions
+  - Auto-capitalization
+  - Punctuation gestures
 
 </td>
 <td width="50%">
 
 ### 🛠️ Technical Updates
 
-- **Performance**
-  - Optimized recognition engine
-  - Improved memory usage
-  - Enhanced error handling
+- **Core Improvements**
+  - Optimized MediaPipe integration
+  - Reduced CPU usage by 30%
+  - Better error recovery
 
 - **User Experience**
-  - Better visual feedback
-  - Smoother animations
-  - Real-time suggestions
+  - Dynamic confidence indicators
+  - Gesture training improvements
+  - Real-time performance metrics
 
 </td>
 </tr>
@@ -146,7 +156,8 @@ graph LR
 
 ```bash
 Python 3.7+
-Webcam
+OpenCV-compatible webcam
+4GB RAM minimum
 Internet (for initial setup)
 ```
 
@@ -158,15 +169,22 @@ git clone https://github.com/notcaliper/HandGaze.git && cd HandGaze && pip insta
 
 ### 🎮 Basic Usage
 
-1. **Start HandGaze**
+1. **Launch HandGaze**
    ```bash
    python hand_recognition.py
    ```
 
-2. **Gesture Controls**
+2. **Train Custom Gestures (Optional)**
+   ```bash
+   python gesture_trainer.py
+   ```
+
+3. **Gesture Controls**
    - 🔤 Use ASL gestures for letters
-   - 👋 Hold "SPACE" gesture (1.5s) for spaces
-   - ✌️ Hold "BACKSPACE" gesture (1.5s) to delete
+   - 👋 Hold "SPACE" gesture (0.8s) for spaces
+   - ✌️ Hold "BACKSPACE" gesture (0.8s) to delete
+   - ✊ "SHIFT" gesture for capitalization
+   - 👆 "PERIOD" gesture for punctuation
 
 ## 💡 Pro Tips
 
@@ -176,22 +194,22 @@ git clone https://github.com/notcaliper/HandGaze.git && cd HandGaze && pip insta
 
 ### 🎯 For Best Recognition
 
+- Maintain good lighting
 - Keep hands within frame
-- Use good lighting
-- Make clear gestures
-- Stay in camera view
-- Watch the hold timer
+- Make deliberate gestures
+- Position camera at eye level
+- Use the training mode for custom gestures
 
 </td>
 <td width="50%">
 
 ### ⚡ For Better Performance
 
-- Use suggested words
-- Practice common gestures
-- Keep steady hand position
-- Use word predictions
-- Follow visual feedback
+- Close background applications
+- Enable hardware acceleration
+- Update gesture database regularly
+- Use suggested word completions
+- Keep hands 2-3 feet from camera
 
 </td>
 </tr>

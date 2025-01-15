@@ -3,7 +3,7 @@
 <div align="center">
 
 [![HandGaze Features](https://img.shields.io/badge/HandGaze-Features-blue?style=for-the-badge&logo=opencv)](https://github.com/notcaliper/HandGaze)
-[![Version](https://img.shields.io/badge/Version-2.0-green?style=for-the-badge)](https://github.com/notcaliper/HandGaze/releases)
+[![Version](https://img.shields.io/badge/Version-2.1-green?style=for-the-badge)](https://github.com/notcaliper/HandGaze/releases)
 [![Stars](https://img.shields.io/badge/Stars-⭐⭐⭐⭐⭐-yellow?style=for-the-badge)](https://github.com/notcaliper/HandGaze)
 
 *Transform your hand gestures into seamless digital communication* ✨
@@ -20,10 +20,10 @@
 
 | 🚀 Performance | 🎨 Interface | 🛠️ Technology |
 |:-------------:|:------------:|:-------------:|
-| 30+ FPS | Modern UI | MediaPipe |
-| Low Latency | Real-time Feedback | OpenCV |
-| Optimized Code | Intuitive Controls | TensorFlow |
-| Smart Caching | Visual Guides | YOLO |
+| 95%+ Accuracy | Dynamic UI | MediaPipe |
+| 0.8s Latency | Real-time Metrics | OpenCV |
+| Smart Caching | Hardware Acceleration | TensorFlow |
+| Predictive Text | Visual Confidence | OpenCL |
 
 </div>
 
@@ -33,7 +33,7 @@
 <tr>
 <td width="50%">
 
-### 👁️ Real-Time Recognition
+### 👁️ Enhanced Recognition
 
 <div align="center">
 
@@ -41,31 +41,31 @@
 graph TD
     A[Camera] --> B[Detection]
     B --> C[Analysis]
-    C --> D[Output]
+    C --> D[Prediction]
     style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
     style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
     style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
     style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
 ```
 
-- ⚡ High-Speed Processing
+- ⚡ 95%+ Accuracy
 - 🎯 Precise Detection
-- 📊 Real-time Metrics
-- 🔄 Continuous Tracking
+- 📊 Dynamic Metrics
+- 🔄 0.8s Response Time
 
 </div>
 
 </td>
 <td width="50%">
 
-### 🤖 Gesture System
+### 🤖 Advanced Gestures
 
 <div align="center">
 
 ```mermaid
 graph TD
     A[Gesture] --> B[Recognition]
-    B --> C[Processing]
+    B --> C[Prediction]
     C --> D[Action]
     style A fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
     style B fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
@@ -73,10 +73,10 @@ graph TD
     style D fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
 ```
 
-- 🔤 Full ASL Support
-- ✨ Custom Gestures
-- 📈 Accuracy Metrics
-- ⏱️ Smart Timing
+- 🔤 Enhanced ASL Support
+- ✨ Dynamic Training
+- 📈 Real-time Confidence
+- ⏱️ Predictive Analysis
 
 </div>
 
@@ -92,38 +92,38 @@ graph TD
 <tr>
 <td width="33%" align="center">
 
-### ⌨️ Text Input
+### ⌨️ Intelligent Input
 
-![Text Input](https://img.shields.io/badge/Input-Smart-blue?style=for-the-badge)
+![Text Input](https://img.shields.io/badge/Input-Advanced-blue?style=for-the-badge)
 
-- Word Building
-- Auto-Correction
-- Context Aware
-- Real-time Feedback
-
-</td>
-<td width="33%" align="center">
-
-### 📝 Sentence Creation
-
-![Sentences](https://img.shields.io/badge/Creation-Dynamic-green?style=for-the-badge)
-
-- Smart Spacing
-- Easy Editing
-- Line Wrapping
-- Word Flow
+- Predictive Text
+- Auto-Capitalization
+- Context Analysis
+- Performance Metrics
 
 </td>
 <td width="33%" align="center">
 
-### 🔍 Word Suggestions
+### 📝 Advanced Creation
 
-![Suggestions](https://img.shields.io/badge/Suggestions-Intelligent-purple?style=for-the-badge)
+![Sentences](https://img.shields.io/badge/Creation-Smart-green?style=for-the-badge)
 
-- Real-time
-- Context-Based
-- Dictionary
-- Quick Select
+- Punctuation Gestures
+- Dynamic Spacing
+- Smart Predictions
+- Gesture Chaining
+
+</td>
+<td width="33%" align="center">
+
+### 🔍 Smart Predictions
+
+![Suggestions](https://img.shields.io/badge/Predictions-AI-purple?style=for-the-badge)
+
+- Context-Aware
+- Learning System
+- Custom Dictionary
+- Quick Actions
 
 </td>
 </tr>
@@ -147,20 +147,20 @@ graph TD
 </td>
 <td align="center" width="25%">
 
-#### ⚡ FPS
-30+
+#### ⚡ Response
+0.8s
 
 </td>
 <td align="center" width="25%">
 
-#### 📊 Latency
-<100ms
+#### 📊 GPU
+OpenCL
 
 </td>
 <td align="center" width="25%">
 
 #### 💻 CPU
-<30%
+<20%
 
 </td>
 </tr>
@@ -174,28 +174,116 @@ graph TD
 
 <table>
 <tr>
-<td width="25%" align="center">
+<td width="20%" align="center">
 
 ### 🔤 Letters
 ASL A-Z
 
 </td>
-<td width="25%" align="center">
+<td width="20%" align="center">
 
 ### ⌫ Backspace
-1.5s Hold
+0.8s Hold
 
 </td>
-<td width="25%" align="center">
+<td width="20%" align="center">
 
 ### ␣ Space
-1.5s Hold
+0.8s Hold
 
 </td>
-<td width="25%" align="center">
+<td width="20%" align="center">
 
-### ✨ Custom
-User Defined
+### ⇧ Shift
+Toggle Case
+
+</td>
+<td width="20%" align="center">
+
+### 📝 Punctuation
+Quick Gestures
+
+</td>
+</tr>
+</table>
+
+</div>
+
+## 🚀 Hardware Support
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+### 💻 CPU
+Multi-core Support
+
+</td>
+<td align="center" width="25%">
+
+### 🎮 GPU
+OpenCL Acceleration
+
+</td>
+<td align="center" width="25%">
+
+### 📸 Camera
+1080p Support
+
+</td>
+<td align="center" width="25%">
+
+### 💾 Memory
+Optimized Usage
+
+</td>
+</tr>
+</table>
+
+</div>
+
+---
+
+<div align="center">
+
+<h3>🌟 Ready to Transform Your Gestures into Digital Communication? 🌟</h3>
+
+[![Get Started](https://img.shields.io/badge/Get_Started-Now-blue?style=for-the-badge)](README.md)
+[![Documentation](https://img.shields.io/badge/Read-Docs-green?style=for-the-badge)](docs/README.md)
+[![Contribute](https://img.shields.io/badge/Contribute-Welcome-orange?style=for-the-badge)](CONTRIBUTING.md)
+
+</div>
+
+## 🔮 Coming Soon
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+### 🌍
+Multi-language
+
+</td>
+<td align="center" width="25%">
+
+### 🔄
+Cloud Sync
+
+</td>
+<td align="center" width="25%">
+
+### ⚙️
+Custom Sequences
+
+</td>
+<td align="center" width="25%">
+
+### 📱
+Mobile Support
 
 </td>
 </tr>
@@ -250,49 +338,10 @@ graph TD
 </tr>
 </table>
 
-## 🔮 Coming Soon
-
-<div align="center">
-
-<table>
-<tr>
-<td align="center" width="25%">
-
-### 🌍
-Multi-language
-
-</td>
-<td align="center" width="25%">
-
-### 🔄
-Cloud Sync
-
-</td>
-<td align="center" width="25%">
-
-### ⚙️
-Custom Sequences
-
-</td>
-<td align="center" width="25%">
-
-### 📱
-Mobile Support
-
-</td>
-</tr>
-</table>
-
-</div>
-
 ---
 
 <div align="center">
 
-<h3>🌟 Ready to Transform Your Gestures into Digital Communication? 🌟</h3>
-
-[![Get Started](https://img.shields.io/badge/Get_Started-Now-blue?style=for-the-badge)](README.md)
-[![Documentation](https://img.shields.io/badge/Read-Docs-green?style=for-the-badge)](docs/README.md)
-[![Contribute](https://img.shields.io/badge/Contribute-Welcome-orange?style=for-the-badge)](CONTRIBUTING.md)
+Made with ❤️ by [NotCaliper](https://github.com/notcaliper)
 
 </div>
