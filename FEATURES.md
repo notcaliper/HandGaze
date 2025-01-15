@@ -2,160 +2,297 @@
 
 <div align="center">
 
-![HandGaze Features](https://img.shields.io/badge/HandGaze-Features-blue?style=for-the-badge&logo=opencv)
+[![HandGaze Features](https://img.shields.io/badge/HandGaze-Features-blue?style=for-the-badge&logo=opencv)](https://github.com/notcaliper/HandGaze)
+[![Version](https://img.shields.io/badge/Version-2.0-green?style=for-the-badge)](https://github.com/notcaliper/HandGaze/releases)
+[![Stars](https://img.shields.io/badge/Stars-⭐⭐⭐⭐⭐-yellow?style=for-the-badge)](https://github.com/notcaliper/HandGaze)
 
-*A comprehensive guide to HandGaze's features and capabilities*
+*Transform your hand gestures into seamless digital communication* ✨
+
+---
+
+<img src="https://raw.githubusercontent.com/notcaliper/HandGaze/main/docs/features-demo.gif" width="600px" />
 
 </div>
 
-## 📝 Core Features
+<div align="center">
 
-### 1. Real-Time Hand Recognition 👋
-- **High-Speed Processing**: 30+ FPS performance
-- **Multi-Hand Support**: Track multiple hands simultaneously
-- **Precise Landmark Detection**: 21 points per hand tracking
-- **Low Latency**: Immediate response to hand movements
+# 🎯 Feature Highlights
 
-### 2. Gesture Recognition System 🎯
-- **ASL Alphabet Support**: Full A-Z letter recognition
-- **Custom Gesture Training**: Add your own gestures
-- **Gesture Confidence Scoring**: Accuracy feedback
-- **Gesture Hold Detection**: Time-based gesture confirmation
+| 🚀 Performance | 🎨 Interface | 🛠️ Technology |
+|:-------------:|:------------:|:-------------:|
+| 30+ FPS | Modern UI | MediaPipe |
+| Low Latency | Real-time Feedback | OpenCV |
+| Optimized Code | Intuitive Controls | TensorFlow |
+| Smart Caching | Visual Guides | YOLO |
 
-### 3. Smart Text Input System ⌨️
-- **Word Building**: Convert gestures to text
-- **Auto-Correction**: Smart word suggestions
-- **Context Awareness**: Improved accuracy based on context
-- **Real-Time Feedback**: Visual typing confirmation
+</div>
 
-### 4. Sentence Creation 📚
-- **Space Gesture**: Add spaces between words
-- **Smart Backspace**: Context-aware text deletion
-- **Word Editing**: Easy modification of typed words
-- **Line Wrapping**: Clean text display for long sentences
+## 🌟 Core Features
 
-## 🚀 Advanced Features
+<table>
+<tr>
+<td width="50%">
 
-### 1. Word Suggestions 💡
-- **Real-Time Suggestions**: As you type
-- **Dictionary Integration**: Extensive word database
-- **Smart Prediction**: Based on typing patterns
-- **Quick Selection**: Easy suggestion acceptance
+### 👁️ Real-Time Recognition
 
-### 2. Visual Feedback System 📊
-- **Gesture Confidence Display**: Real-time accuracy metrics
-- **Hold Timer Visualization**: Visual gesture confirmation
-- **Hand Tracking Display**: See detected landmarks
-- **Status Indicators**: Clear system state feedback
+<div align="center">
 
-### 3. Performance Optimizations ⚡
-- **Efficient Processing**: Optimized for low resource usage
-- **Frame Skip Logic**: Smart frame processing
-- **Memory Management**: Optimized resource allocation
-- **Smooth Animation**: Fluid visual feedback
-
-### 4. Error Handling 🛡️
-- **Recovery System**: Automatic error recovery
-- **Invalid Gesture Detection**: Prevents mistyping
-- **Connection Monitoring**: Webcam status tracking
-- **User Feedback**: Clear error messages
-
-## 🎮 Interaction Features
-
-### 1. Gesture Controls
-| Gesture | Action | Hold Time |
-|---------|---------|-----------|
-| ASL Letters | Type letter | Instant |
-| SPACE | Add space | 1.5s |
-| BACKSPACE | Delete | 1.5s |
-| Custom | User-defined | Configurable |
-
-### 2. Text Editing
-- **Word Level**
-  - Delete last character
-  - Clear entire word
-  - Move word to edit
-  - Auto-complete words
-
-- **Sentence Level**
-  - Space between words
-  - Backspace functionality
-  - Line management
-  - Text wrapping
-
-## 🛠️ Technical Features
-
-### 1. Recognition Engine
 ```mermaid
 graph TD
-    A[Input Frame] --> B[Hand Detection]
-    B --> C[Landmark Extraction]
-    C --> D[Feature Analysis]
-    D --> E[Gesture Classification]
-    E --> F[Action Execution]
+    A[Camera] --> B[Detection]
+    B --> C[Analysis]
+    C --> D[Output]
+    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
+    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
+    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
+    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
 ```
 
-### 2. Performance Metrics
-| Metric | Value |
-|--------|--------|
-| FPS | 30+ |
-| Latency | <100ms |
-| Accuracy | >95% |
-| CPU Usage | <30% |
+- ⚡ High-Speed Processing
+- 🎯 Precise Detection
+- 📊 Real-time Metrics
+- 🔄 Continuous Tracking
 
-## 💡 Tips & Best Practices
+</div>
 
-### For Best Recognition
-1. **Lighting**
-   - Use consistent lighting
-   - Avoid strong backlighting
-   - Maintain good contrast
+</td>
+<td width="50%">
 
-2. **Hand Positioning**
-   - Keep within frame
-   - Maintain ~50cm distance
-   - Clear background
-   - Stable hand position
+### 🤖 Gesture System
 
-3. **Gesture Execution**
-   - Clear, deliberate movements
-   - Hold gestures steady
-   - Follow the hold timer
-   - Practice common gestures
+<div align="center">
 
-### For Better Performance
-1. **System Setup**
-   - Good webcam positioning
-   - Proper lighting setup
-   - Clear background
-   - Updated dependencies
+```mermaid
+graph TD
+    A[Gesture] --> B[Recognition]
+    B --> C[Processing]
+    C --> D[Action]
+    style A fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
+    style B fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
+    style C fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
+    style D fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
+```
 
-2. **Usage Tips**
-   - Use word suggestions
-   - Learn gesture timings
-   - Practice fluid movements
-   - Regular calibration
+- 🔤 Full ASL Support
+- ✨ Custom Gestures
+- 📈 Accuracy Metrics
+- ⏱️ Smart Timing
 
-## 🔄 Updates and Improvements
+</div>
 
-### Latest Additions (v2.0)
-- Reduced gesture delay (1.5s)
-- Enhanced backspace functionality
-- Improved word suggestions
-- Better visual feedback
-- Smoother animations
+</td>
+</tr>
+</table>
 
-### Planned Features
-- Multi-language support
-- Custom gesture sequences
-- Cloud sync options
-- Performance profiles
-- Advanced text editing
+## 💫 Smart Features
+
+<div align="center">
+
+<table>
+<tr>
+<td width="33%" align="center">
+
+### ⌨️ Text Input
+
+![Text Input](https://img.shields.io/badge/Input-Smart-blue?style=for-the-badge)
+
+- Word Building
+- Auto-Correction
+- Context Aware
+- Real-time Feedback
+
+</td>
+<td width="33%" align="center">
+
+### 📝 Sentence Creation
+
+![Sentences](https://img.shields.io/badge/Creation-Dynamic-green?style=for-the-badge)
+
+- Smart Spacing
+- Easy Editing
+- Line Wrapping
+- Word Flow
+
+</td>
+<td width="33%" align="center">
+
+### 🔍 Word Suggestions
+
+![Suggestions](https://img.shields.io/badge/Suggestions-Intelligent-purple?style=for-the-badge)
+
+- Real-time
+- Context-Based
+- Dictionary
+- Quick Select
+
+</td>
+</tr>
+</table>
+
+</div>
+
+## ⚡ Performance Features
+
+<div align="center">
+
+### System Performance
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+#### 🎯 Accuracy
+95%+
+
+</td>
+<td align="center" width="25%">
+
+#### ⚡ FPS
+30+
+
+</td>
+<td align="center" width="25%">
+
+#### 📊 Latency
+<100ms
+
+</td>
+<td align="center" width="25%">
+
+#### 💻 CPU
+<30%
+
+</td>
+</tr>
+</table>
+
+</div>
+
+## 🎮 Controls & Gestures
+
+<div align="center">
+
+<table>
+<tr>
+<td width="25%" align="center">
+
+### 🔤 Letters
+ASL A-Z
+
+</td>
+<td width="25%" align="center">
+
+### ⌫ Backspace
+1.5s Hold
+
+</td>
+<td width="25%" align="center">
+
+### ␣ Space
+1.5s Hold
+
+</td>
+<td width="25%" align="center">
+
+### ✨ Custom
+User Defined
+
+</td>
+</tr>
+</table>
+
+</div>
+
+## 💡 Pro Tips
+
+<table>
+<tr>
+<td width="50%">
+
+### 🎯 Best Recognition
+
+<div align="center">
+
+```mermaid
+graph TD
+    A[Good Lighting] --> D[Success]
+    B[Clear View] --> D[Success]
+    C[Steady Hand] --> D[Success]
+    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
+    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
+    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
+    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
+```
+
+</div>
+
+</td>
+<td width="50%">
+
+### ⚡ Best Performance
+
+<div align="center">
+
+```mermaid
+graph TD
+    A[Practice] --> D[Mastery]
+    B[Use Tips] --> D[Mastery]
+    C[Stay Updated] --> D[Mastery]
+    style A fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
+    style B fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
+    style C fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
+    style D fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
+```
+
+</div>
+
+</td>
+</tr>
+</table>
+
+## 🔮 Coming Soon
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="25%">
+
+### 🌍
+Multi-language
+
+</td>
+<td align="center" width="25%">
+
+### 🔄
+Cloud Sync
+
+</td>
+<td align="center" width="25%">
+
+### ⚙️
+Custom Sequences
+
+</td>
+<td align="center" width="25%">
+
+### 📱
+Mobile Support
+
+</td>
+</tr>
+</table>
+
+</div>
 
 ---
 
 <div align="center">
 
-For more information, visit our [Documentation](docs/README.md)
+<h3>🌟 Ready to Transform Your Gestures into Digital Communication? 🌟</h3>
+
+[![Get Started](https://img.shields.io/badge/Get_Started-Now-blue?style=for-the-badge)](README.md)
+[![Documentation](https://img.shields.io/badge/Read-Docs-green?style=for-the-badge)](docs/README.md)
+[![Contribute](https://img.shields.io/badge/Contribute-Welcome-orange?style=for-the-badge)](CONTRIBUTING.md)
 
 </div>
