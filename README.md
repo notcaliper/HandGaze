@@ -21,134 +21,56 @@
 
 </div>
 
-## 📚 Quick Documentation
-
-<div align="center">
-
-<table>
-<tr>
-<td align="center" width="25%">
-
-### 📖
-[Full Documentation](docs/README.md)
-
-Complete guide
-
-</td>
-<td align="center" width="25%">
-
-### ✨
-[Features Guide](docs/FEATURES.md)
-
-All features
-
-</td>
-<td align="center" width="25%">
-
-### 🎯
-[API Reference](docs/README.md#-api-reference)
-
-Technical details
-
-</td>
-<td align="center" width="25%">
-
-### 🔧
-[Troubleshooting](docs/README.md#-troubleshooting)
-
-Common issues
-
-</td>
-</tr>
-</table>
-
-</div>
-
 ## 🌟 What is HandGaze?
 
 HandGaze is a cutting-edge computer vision application that revolutionizes digital communication through AI-powered hand gesture recognition. Create sentences, type words, and interact with your computer using natural hand movements - all in real-time!
 
+## ✨ Feature Overview
+
 <div align="center">
-
-```mermaid
-graph LR
-    A[👁️ Camera Input] --> B[🤚 Hand Detection]
-    B --> C[📍 Landmark Tracking]
-    C --> D[🎯 Gesture Recognition]
-    D --> E[💭 Word Processing]
-    E --> F[📝 Sentence Creation]
-    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
-    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
-    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
-    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
-    style E fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
-    style F fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
-    linkStyle default stroke:#333333,stroke-width:2px
-```
-
-</div>
-
-## ✨ Features
-
-- 🎯 **Real-time Hand Recognition**
-  - Advanced hand tracking using MediaPipe
-  - Robust landmark detection
-  - Real-time gesture feedback
-
-- 🔤 **Gesture Training System**
-  - Interactive gesture training interface
-  - Visual feedback during training
-  - Gesture testing with confidence scoring
-  - Automatic data backup and validation
-
-- 📚 **Smart Dictionary Integration**
-  - Offline dictionary with spell checking
-  - Word suggestions and auto-correction
-  - Enhanced word frequency analysis
-  - Efficient data storage and retrieval
-
-- 🎨 **User Experience**
-  - Intuitive visual feedback
-  - Progress tracking
-  - Real-time confidence scoring
-  - Error handling and recovery
-
-## 🎯 Latest Updates (v2.1)
 
 <table>
 <tr>
-<td width="50%">
+<td align="center" width="33%">
 
-### ✨ New Features
+### 🎯 Core Features
 
-- **Enhanced Gesture Recognition**
-  - Improved accuracy (95%+)
-  - Faster response time (0.8s)
-  - Multi-hand support
-  
-- **Advanced Text Processing**
-  - Predictive text suggestions
-  - Auto-capitalization
-  - Punctuation gestures
+- 95%+ Recognition Accuracy
+- 0.8s Response Time
+- OpenCL Acceleration
+- Real-time Performance
+- ASL Gesture Support
+- Custom Gesture Training
 
 </td>
-<td width="50%">
+<td align="center" width="33%">
 
-### 🛠️ Technical Updates
+### 🔧 Smart Tools
 
-- **Core Improvements**
-  - Optimized MediaPipe integration
-  - Reduced CPU usage by 30%
-  - Better error recovery
+- Predictive Text Input
+- Auto-capitalization
+- Punctuation Gestures
+- Context-aware Corrections
+- Word Suggestions
+- Dynamic Confidence
 
-- **User Experience**
-  - Dynamic confidence indicators
-  - Gesture training improvements
-  - Real-time performance metrics
+</td>
+<td align="center" width="33%">
+
+### ⚡ Performance
+
+- Hardware Acceleration
+- Smart Caching System
+- Optimized Processing
+- Low CPU Usage (<20%)
+- High FPS Output
+- Memory Efficient
 
 </td>
 </tr>
 </table>
+
+</div>
 
 ## 🚀 Quick Start
 
@@ -215,35 +137,52 @@ git clone https://github.com/notcaliper/HandGaze.git && cd HandGaze && pip insta
 </tr>
 </table>
 
-## 🛠️ Project Structure
+## 📚 Documentation
 
-```
-HandGaze/
-├── 📜 hand_recognition.py  # Main recognition system
-├── 🎯 object_detector.py   # Object detection
-├── 📚 offline_dictionary.py # Word suggestions
-├── ⚙️ gesture_trainer.py   # Custom gesture training
-├── 📋 requirements.txt     # Dependencies
-├── 📖 docs/               # Documentation
-│   ├── README.md          # Full guide
-│   └── FEATURES.md        # Features guide
-└── 📁 data/
-    ├── dictionary_data/    # Word database
-    └── gesture_data/       # Trained gestures
-```
+<div align="center">
 
-## 🤝 Contributing
+<table>
+<tr>
+<td align="center" width="25%">
 
-We welcome contributions! Here's how you can help:
+### 📖
+[Full Documentation](docs/README.md)
 
-- 🐛 Report bugs and issues
-- 💡 Suggest new features
-- 🔧 Submit pull requests
-- 📚 Improve documentation
+Complete guide
 
-## 📄 License
+</td>
+<td align="center" width="25%">
 
-HandGaze is GNU GPLv3 licensed. See [LICENSE](LICENSE) for details.
+### ✨
+[Features Guide](docs/FEATURES.md)
+
+All features
+
+</td>
+<td align="center" width="25%">
+
+### 🎯
+[API Reference](docs/README.md#-api-reference)
+
+Technical details
+
+</td>
+<td align="center" width="25%">
+
+### 🔧
+[Troubleshooting](docs/README.md#-troubleshooting)
+
+Common issues
+
+</td>
+</tr>
+</table>
+
+</div>
+
+## 📝 License
+
+HandGaze is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
 
 ---
 
