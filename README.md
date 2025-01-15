@@ -68,6 +68,53 @@ Common issues
 
 HandGaze is a cutting-edge computer vision application that revolutionizes digital communication through AI-powered hand gesture recognition. Create sentences, type words, and interact with your computer using natural hand movements - all in real-time!
 
+## ✨ Feature Overview
+
+<div align="center">
+
+<table>
+<tr>
+<td align="center" width="33%">
+
+### 🎯 Core Features
+
+- 95%+ Recognition Accuracy
+- 0.8s Response Time
+- OpenCL Acceleration
+- Real-time Performance
+- ASL Gesture Support
+- Custom Gesture Training
+
+</td>
+<td align="center" width="33%">
+
+### 🔧 Smart Tools
+
+- Predictive Text Input
+- Auto-capitalization
+- Punctuation Gestures
+- Context-aware Corrections
+- Word Suggestions
+- Dynamic Confidence
+
+</td>
+<td align="center" width="33%">
+
+### ⚡ Performance
+
+- Hardware Acceleration
+- Smart Caching System
+- Optimized Processing
+- Low CPU Usage (<20%)
+- High FPS Output
+- Memory Efficient
+
+</td>
+</tr>
+</table>
+
+</div>
+
 <div align="center">
 
 ```mermaid
