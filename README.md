@@ -9,28 +9,33 @@
 [![OpenCV](https://img.shields.io/badge/OpenCV-Latest-red.svg)](https://opencv.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-*Transform your hand gestures into digital commands with real-time AI-powered recognition* 🚀
+> *Transform your hand gestures into digital communication with AI-powered recognition* ✨
 
-[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](#-documentation) • [Contributing](#-contributing)
+[Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](#-documentation)
 
 ---
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/notcaliper/HandGaze/main/docs/demo.gif" alt="HandGaze Demo" width="600"/>
+</p>
 
 </div>
 
 ## 🌟 What is HandGaze?
 
-HandGaze is a cutting-edge computer vision application that brings hand gesture recognition to life. Using advanced AI and computer vision techniques, it transforms your webcam into a sophisticated gesture recognition system.
+HandGaze is a cutting-edge computer vision application that revolutionizes digital communication through AI-powered hand gesture recognition. Create sentences, type words, and interact with your computer using natural hand movements - all in real-time!
 
 <div align="center">
 
 ```mermaid
 graph LR
-    A[Webcam Input] --> B[Hand Detection]
-    B --> C[Landmark Tracking]
-    C --> D[Gesture Recognition]
-    D --> E[Real-time Output]
+    A[👁️ Camera Input] --> B[🤚 Hand Detection]
+    B --> C[📍 Landmark Tracking]
+    C --> D[🎯 Gesture Recognition]
+    D --> E[💭 Word Processing]
+    E --> F[📝 Sentence Creation]
     style A fill:#f9f,stroke:#333,stroke-width:2px
-    style E fill:#bbf,stroke:#333,stroke-width:2px
+    style F fill:#bbf,stroke:#333,stroke-width:2px
 ```
 
 </div>
@@ -39,150 +44,140 @@ graph LR
 
 <div align="center">
 
-| Feature | Description |
-|---------|-------------|
-| 🎯 Real-time Recognition | Instant hand tracking and gesture detection |
-| 🎨 Custom Gestures | Train your own unique gesture patterns |
-| 🔤 ASL Support | Full alphabet (A-Z) recognition capability |
-| ⚡ High Performance | Optimized for 30+ FPS processing |
-| 📊 Visual Feedback | Real-time landmark visualization |
-| 🎮 Interactive UI | User-friendly interface with confidence metrics |
+| Core Features | Smart Features | User Experience |
+|--------------|----------------|-----------------|
+| 🎯 Real-time Recognition | 🔍 Word Suggestions | 🎨 Interactive UI |
+| 🤚 Hand Tracking | 📝 Sentence Building | ⚡ High Performance |
+| 🔤 ASL Support | ⌫ Smart Backspace | 📊 Visual Feedback |
+| ✨ Custom Gestures | 💡 Auto-Correction | 🎮 Gesture Control |
 
 </div>
 
-## 🚀 Getting Started
+## 🎯 Latest Updates (v2.0)
 
-### Prerequisites
+<table>
+<tr>
+<td width="50%">
 
-<details>
-<summary>Click to expand</summary>
+### ✨ New Features
 
-- Python 3.7 or higher
-- Webcam
-- Required packages:
-  ```bash
-  pip install -r requirements.txt
-  ```
-</details>
+- **Sentence Creation**
+  - Build complete sentences
+  - Smart word spacing
+  - Line wrapping support
+  
+- **Enhanced Text Editing**
+  - Context-aware backspace
+  - Word suggestion system
+  - Faster gesture response (1.5s)
 
-### 🔧 Installation
+</td>
+<td width="50%">
 
-1️⃣ **Clone the Repository**
-```bash
-git clone https://github.com/yourusername/HandGaze.git
-cd HandGaze
-```
+### 🛠️ Technical Updates
 
-2️⃣ **Set Up Environment**
-```bash
-python -m venv env
-source env/bin/activate  # Linux/Mac
-# or
-.\env\Scripts\activate  # Windows
-```
+- **Performance**
+  - Optimized recognition engine
+  - Improved memory usage
+  - Enhanced error handling
 
-3️⃣ **Install Dependencies**
-```bash
-pip install -r requirements.txt
-```
+- **User Experience**
+  - Better visual feedback
+  - Smoother animations
+  - Real-time suggestions
 
-## 🎮 Usage
+</td>
+</tr>
+</table>
 
-### Train Custom Gestures
-```bash
-python gesture_trainer.py
-```
-> Follow the interactive prompts to record your custom gestures!
+## 🚀 Quick Start
 
-### Run Recognition
-
-Choose your mode:
-
-<details>
-<summary>🔵 Basic Recognition</summary>
+### 📋 Prerequisites
 
 ```bash
-python hand-recognition.py
+Python 3.7+
+Webcam
+Internet (for initial setup)
 ```
-- Perfect for getting started
-- Pre-configured gesture sets
-- Optimized for performance
-</details>
 
-<details>
-<summary>🔴 Custom Recognition</summary>
+### ⚡ One-Line Installation
 
 ```bash
-python custom_hand_recognition.py
-```
-- Use your trained gestures
-- Advanced recognition features
-- Higher accuracy for custom patterns
-</details>
-
-## 🛠️ System Architecture
-
-<div align="center">
-
-```mermaid
-flowchart TD
-    A[Input Stream] --> B[MediaPipe Hands]
-    B --> C[Landmark Detection]
-    C --> D[Feature Extraction]
-    D --> E[Gesture Classification]
-    E --> F[Output Visualization]
+git clone https://github.com/notcaliper/HandGaze.git && cd HandGaze && pip install -r requirements.txt
 ```
 
-</div>
+### 🎮 Basic Usage
 
-## 📝 Supported Gestures
+1. **Start HandGaze**
+   ```bash
+   python hand_recognition.py
+   ```
 
-### American Sign Language (ASL)
-- Full alphabet support (A-Z)
-- High-accuracy recognition
-- Real-time feedback
+2. **Gesture Controls**
+   - 🔤 Use ASL gestures for letters
+   - 👋 Hold "SPACE" gesture (1.5s) for spaces
+   - ✌️ Hold "BACKSPACE" gesture (1.5s) to delete
 
-### Custom Gestures
-- User-defined patterns
-- Extensible gesture library
-- Easy training process
+## 💡 Pro Tips
 
-## 💡 Tips & Tricks
+<table>
+<tr>
+<td width="50%">
 
-<details>
-<summary>Click for best practices</summary>
+### 🎯 For Best Recognition
 
-- 🎥 Ensure good lighting
-- 🖐️ Keep hand within frame
-- 📏 Maintain ~50cm distance
-- 🎯 Use clear, deliberate movements
-</details>
+- Keep hands within frame
+- Use good lighting
+- Make clear gestures
+- Stay in camera view
+- Watch the hold timer
+
+</td>
+<td width="50%">
+
+### ⚡ For Better Performance
+
+- Use suggested words
+- Practice common gestures
+- Keep steady hand position
+- Use word predictions
+- Follow visual feedback
+
+</td>
+</tr>
+</table>
+
+## 🛠️ Project Structure
+
+```
+HandGaze/
+├── 📜 hand_recognition.py  # Main recognition system
+├── 🎯 object_detector.py   # Object detection
+├── 📚 offline_dictionary.py # Word suggestions
+├── ⚙️ gesture_trainer.py   # Custom gesture training
+├── 📋 requirements.txt     # Dependencies
+└── 📁 data/
+    ├── dictionary_data/    # Word database
+    └── gesture_data/       # Trained gestures
+```
 
 ## 🤝 Contributing
 
 We welcome contributions! Here's how you can help:
 
-1. 🍴 Fork the repository
-2. 🔧 Create your feature branch
-3. ✨ Add your improvements
-4. 📝 Submit a pull request
+- 🐛 Report bugs and issues
+- 💡 Suggest new features
+- 🔧 Submit pull requests
+- 📚 Improve documentation
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- MediaPipe team for their groundbreaking hand tracking solution
-- OpenCV community for comprehensive computer vision tools
-- All contributors who have helped shape HandGaze
-
-<div align="center">
+HandGaze is GNU GPLv3 licensed. See [LICENSE](LICENSE) for details.
 
 ---
 
-<img src="https://img.shields.io/badge/Made%20with-❤️-red.svg" alt="Made with love">
+<div align="center">
 
-*Last updated: January 11, 2025*
+Made with ❤️ by [NotCaliper](https://github.com/notcaliper)
 
 </div>
