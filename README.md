@@ -34,8 +34,12 @@ graph LR
     C --> D[🎯 Gesture Recognition]
     D --> E[💭 Word Processing]
     E --> F[📝 Sentence Creation]
-    style A fill:#f9f,stroke:#333,stroke-width:2px
-    style F fill:#bbf,stroke:#333,stroke-width:2px
+    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px
+    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px
+    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px
+    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px
+    style E fill:#ff99ff,stroke:#ff00ff,stroke-width:2px
+    style F fill:#99ffff,stroke:#00ffff,stroke-width:2px
 ```
 
 </div>
