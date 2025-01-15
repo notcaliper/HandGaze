@@ -4,14 +4,14 @@
 
 ![HandGaze Logo](https://img.shields.io/badge/HandGaze-Vision-blue?style=for-the-badge&logo=opencv)
 
-[![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)](https://www.python.org/)
-[![MediaPipe](https://img.shields.io/badge/MediaPipe-Latest-green.svg)](https://mediapipe.dev/)
-[![OpenCV](https://img.shields.io/badge/OpenCV-Latest-red.svg)](https://opencv.org/)
-[![License](https://img.shields.io/badge/license-GNU_GPL_v3-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-v3.7+-blue.svg?style=for-the-badge&logo=python)](https://www.python.org/)
+[![MediaPipe](https://img.shields.io/badge/MediaPipe-Latest-green.svg?style=for-the-badge&logo=google)](https://mediapipe.dev/)
+[![OpenCV](https://img.shields.io/badge/OpenCV-Latest-red.svg?style=for-the-badge&logo=opencv)](https://opencv.org/)
+[![License](https://img.shields.io/badge/license-GNU_GPL_v3-blue.svg?style=for-the-badge&logo=gnu)](LICENSE)
 
 > *Transform your hand gestures into digital communication with AI-powered recognition* ✨
 
-[Features](docs/FEATURES.md) • [Installation](#-installation) • [Usage](#-usage) • [Documentation](docs/README.md)
+[Features](docs/FEATURES.md) • [Installation](#-quick-start) • [Usage](#-basic-usage) • [Documentation](docs/README.md)
 
 ---
 
@@ -206,6 +206,9 @@ HandGaze/
 ├── 📚 offline_dictionary.py # Word suggestions
 ├── ⚙️ gesture_trainer.py   # Custom gesture training
 ├── 📋 requirements.txt     # Dependencies
+├── 📖 docs/               # Documentation
+│   ├── README.md          # Full guide
+│   └── FEATURES.md        # Features guide
 └── 📁 data/
     ├── dictionary_data/    # Word database
     └── gesture_data/       # Trained gestures
