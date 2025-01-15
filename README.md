@@ -7,7 +7,7 @@
 [![Python](https://img.shields.io/badge/python-v3.7+-blue.svg)](https://www.python.org/)
 [![MediaPipe](https://img.shields.io/badge/MediaPipe-Latest-green.svg)](https://mediapipe.dev/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-Latest-red.svg)](https://opencv.org/)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![License](https://img.shields.io/badge/license-GNU_GPL_v3-blue.svg)](LICENSE)
 
 > *Transform your hand gestures into digital communication with AI-powered recognition* ✨
 
@@ -16,7 +16,7 @@
 ---
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/notcaliper/HandGaze/main/docs/demo.gif" alt="HandGaze Demo" width="600"/>
+  <img src="docs/demo.gif" alt="HandGaze Demo" width="600"/>
 </p>
 
 </div>
