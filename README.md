@@ -56,6 +56,8 @@ graph LR
 | 🔤 ASL Support | ⌫ Smart Backspace | 📊 Visual Feedback |
 | ✨ Custom Gestures | 💡 Auto-Correction | 🎮 Gesture Control |
 
+[View Full Features Guide](FEATURES.md) 📚
+
 </div>
 
 ## 🎯 Latest Updates (v2.0)
