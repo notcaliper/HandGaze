@@ -6,10 +6,20 @@ from collections import deque
 import pickle
 import os
 from typing import List, Dict, Optional
+import tensorflow as tf
 from offline_dictionary import OfflineDictionary
 
 class CustomHandGestureRecognizer:
     def __init__(self):
+        # Initialize TensorFlow for computation
+        gpus = tf.config.list_physical_devices('GPU')
+        if gpus:
+            print("TensorFlow using GPU:", gpus[0].name)
+            # Allow memory growth to prevent TF from taking all GPU memory
+            tf.config.experimental.set_memory_growth(gpus[0], True)
+        else:
+            print("TensorFlow using CPU")
+        
         # Initialize video capture with optimized settings
         self.cap = cv2.VideoCapture(0)
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
@@ -22,7 +32,7 @@ class CustomHandGestureRecognizer:
         self.hands = self.mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=1,
-            min_detection_confidence=0.5,  # Slightly lower for better performance
+            min_detection_confidence=0.5,
             min_tracking_confidence=0.5
         )
         self.mp_draw = mp.solutions.drawing_utils
@@ -99,20 +109,27 @@ class CustomHandGestureRecognizer:
         return precomputed
 
     def get_relative_distances(self, landmarks):
-        """Calculate relative distances between key points"""
+        """Calculate relative distances between key points using TensorFlow"""
         key_points = [4, 8, 12, 16, 20]
-        distances = np.zeros((len(key_points) * (len(key_points) - 1)) // 2)
+        n_distances = (len(key_points) * (len(key_points) - 1)) // 2
+        distances = tf.zeros(n_distances, dtype=tf.float32)
+        
+        # Convert landmarks to tensor
+        landmarks_tensor = tf.convert_to_tensor(landmarks, dtype=tf.float32)
+        
         idx = 0
         for i in range(len(key_points)):
-            p1 = landmarks[key_points[i]]
+            p1 = tf.convert_to_tensor(landmarks[key_points[i]], dtype=tf.float32)
             for j in range(i + 1, len(key_points)):
-                p2 = landmarks[key_points[j]]
-                distances[idx] = np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+                p2 = tf.convert_to_tensor(landmarks[key_points[j]], dtype=tf.float32)
+                dist = tf.sqrt(tf.reduce_sum(tf.square(p1 - p2)))
+                distances = tf.tensor_scatter_nd_update(distances, [[idx]], [dist])
                 idx += 1
-        return distances
+                
+        return distances.numpy()
 
     def calculate_angles(self, landmarks):
-        """Calculate angles between finger joints for better recognition"""
+        """Calculate angles between finger joints using TensorFlow"""
         angles = []
         # Define finger joint connections (indices)
         finger_joints = [
@@ -123,40 +140,53 @@ class CustomHandGestureRecognizer:
             [0, 17, 18], [17, 18, 19], [18, 19, 20]  # Pinky
         ]
         
+        # Convert landmarks to TensorFlow tensor
+        landmarks_tensor = tf.convert_to_tensor(landmarks, dtype=tf.float32)
+        
         for p1, p2, p3 in finger_joints:
-            v1 = np.array([landmarks[p1][0] - landmarks[p2][0], 
-                          landmarks[p1][1] - landmarks[p2][1]])
-            v2 = np.array([landmarks[p3][0] - landmarks[p2][0], 
-                          landmarks[p3][1] - landmarks[p2][1]])
+            v1 = tf.convert_to_tensor([
+                landmarks[p1][0] - landmarks[p2][0],
+                landmarks[p1][1] - landmarks[p2][1]
+            ], dtype=tf.float32)
+            
+            v2 = tf.convert_to_tensor([
+                landmarks[p3][0] - landmarks[p2][0],
+                landmarks[p3][1] - landmarks[p2][1]
+            ], dtype=tf.float32)
             
             # Normalize vectors
-            v1_norm = np.linalg.norm(v1)
-            v2_norm = np.linalg.norm(v2)
-            if v1_norm == 0 or v2_norm == 0:
-                angles.append(0)
+            v1_norm = tf.norm(v1)
+            v2_norm = tf.norm(v2)
+            
+            if tf.equal(v1_norm, 0.0) or tf.equal(v2_norm, 0.0):
+                angles.append(0.0)
                 continue
-                
+            
             v1_normalized = v1 / v1_norm
             v2_normalized = v2 / v2_norm
             
             # Calculate angle
-            angle = np.arccos(np.clip(np.dot(v1_normalized, v2_normalized), -1.0, 1.0))
-            angles.append(angle)
+            dot_product = tf.tensordot(v1_normalized, v2_normalized, axes=1)
+            angle = tf.acos(tf.clip_by_value(dot_product, -1.0, 1.0))
+            angles.append(float(angle.numpy()))
             
         return angles
 
     def calculate_landmark_similarity(self, landmarks1, landmarks2_features):
-        """Optimized similarity calculation using pre-computed features"""
-        # Calculate features for current landmarks
-        angles1 = np.array(self.calculate_angles(landmarks1))
-        rel_dist1 = self.get_relative_distances(landmarks1)
+        """Optimized similarity calculation using TensorFlow"""
+        # Convert inputs to TensorFlow tensors
+        angles1 = tf.convert_to_tensor(self.calculate_angles(landmarks1), dtype=tf.float32)
+        rel_dist1 = tf.convert_to_tensor(self.get_relative_distances(landmarks1), dtype=tf.float32)
         
-        # Compare with pre-computed features
-        angle_diff = np.mean(np.abs(angles1 - landmarks2_features['angles']))
-        rel_dist_diff = np.mean(np.abs(rel_dist1 - landmarks2_features['rel_distances']))
+        angles2 = tf.convert_to_tensor(landmarks2_features['angles'], dtype=tf.float32)
+        rel_dist2 = tf.convert_to_tensor(landmarks2_features['rel_distances'], dtype=tf.float32)
+        
+        # Calculate differences using TensorFlow
+        angle_diff = tf.reduce_mean(tf.abs(angles1 - angles2))
+        rel_dist_diff = tf.reduce_mean(tf.abs(rel_dist1 - rel_dist2))
         
         # Combine similarities with weights
-        return angle_diff * 0.6 + rel_dist_diff * 0.4
+        return float((angle_diff * 0.6 + rel_dist_diff * 0.4).numpy())
 
     def recognize_gesture(self, current_landmarks):
         """Optimized gesture recognition"""
