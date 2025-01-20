@@ -1,81 +1,110 @@
 Gesture Training Summary
 =====================
 
+Last Updated: 2025-01-20 23:52:01
+Total Gestures: 26
+
 Gesture: A
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/A_sample_*.jpg
 -----------------
 Gesture: B
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/B_sample_*.jpg
 -----------------
 Gesture: C
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/C_sample_*.jpg
 -----------------
 Gesture: D
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/D_sample_*.jpg
 -----------------
 Gesture: E
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/E_sample_*.jpg
 -----------------
 Gesture: F
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/F_sample_*.jpg
 -----------------
 Gesture: G
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/G_sample_*.jpg
 -----------------
 Gesture: H
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/H_sample_*.jpg
 -----------------
 Gesture: I
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/I_sample_*.jpg
 -----------------
 Gesture: J
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/J_sample_*.jpg
 -----------------
 Gesture: K
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/K_sample_*.jpg
 -----------------
 Gesture: L
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/L_sample_*.jpg
 -----------------
 Gesture: M
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/M_sample_*.jpg
 -----------------
 Gesture: N
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/N_sample_*.jpg
 -----------------
 Gesture: O
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/O_sample_*.jpg
 -----------------
 Gesture: P
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/P_sample_*.jpg
 -----------------
 Gesture: Q
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/Q_sample_*.jpg
 -----------------
 Gesture: R
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/R_sample_*.jpg
 -----------------
 Gesture: S
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/S_sample_*.jpg
 -----------------
 Gesture: T
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/T_sample_*.jpg
 -----------------
 Gesture: U
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/U_sample_*.jpg
 -----------------
 Gesture: V
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/V_sample_*.jpg
 -----------------
 Gesture: W
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/W_sample_*.jpg
 -----------------
 Gesture: X
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/X_sample_*.jpg
 -----------------
 Gesture: Y
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/Y_sample_*.jpg
 -----------------
 Gesture: Z
-Samples: 50
+Samples: 100
+Sample Images: gesture_data/images/Z_sample_*.jpg
 -----------------

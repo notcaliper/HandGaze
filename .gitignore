@@ -63,7 +63,8 @@ ehthumbs.db
 Thumbs.db
 
 # Project specific
-gesture_data/*.pkl
+gesture_data/images/
+gesture_data/backups/
 dictionary_data/*.json
 *.mp4
 *.avi
