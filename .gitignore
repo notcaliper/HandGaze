@@ -71,7 +71,6 @@ dictionary_data/*.json
 *.wmv
 *.jpg
 *.jpeg
-*.png
 *.gif
 *.bmp
 *.tiff
