@@ -8,21 +8,27 @@ import os
 from typing import List, Dict, Optional
 from offline_dictionary import OfflineDictionary
 
-class HandRecognition:
+class CustomHandGestureRecognizer:
     def __init__(self):
-        # Initialize video capture with optimized settings
+        # Initialize video capture with optimized settings for Linux
         self.cap = cv2.VideoCapture(0)
+        # Set V4L2 (Video4Linux2) settings for better Linux performance
+        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
         self.cap.set(cv2.CAP_PROP_FPS, 30)
         self.cap.set(cv2.CAP_PROP_BUFFERSIZE, 1)  # Minimize frame buffer
+        
+        # Verify camera opened successfully
+        if not self.cap.isOpened():
+            raise RuntimeError("Failed to open camera. Please check camera permissions and connections.")
         
         # Initialize MediaPipe Hands with optimized settings
         self.mp_hands = mp.solutions.hands
         self.hands = self.mp_hands.Hands(
             static_image_mode=False,
             max_num_hands=1,
-            min_detection_confidence=0.5,  # Slightly lower for better performance
+            min_detection_confidence=0.5,
             min_tracking_confidence=0.5
         )
         self.mp_draw = mp.solutions.drawing_utils
@@ -101,18 +107,22 @@ class HandRecognition:
     def get_relative_distances(self, landmarks):
         """Calculate relative distances between key points"""
         key_points = [4, 8, 12, 16, 20]
-        distances = np.zeros((len(key_points) * (len(key_points) - 1)) // 2)
+        n_distances = (len(key_points) * (len(key_points) - 1)) // 2
+        distances = np.zeros(n_distances, dtype=np.float32)
+        
         idx = 0
         for i in range(len(key_points)):
-            p1 = landmarks[key_points[i]]
+            p1 = np.array(landmarks[key_points[i]], dtype=np.float32)
             for j in range(i + 1, len(key_points)):
-                p2 = landmarks[key_points[j]]
-                distances[idx] = np.sqrt((p1[0] - p2[0])**2 + (p1[1] - p2[1])**2)
+                p2 = np.array(landmarks[key_points[j]], dtype=np.float32)
+                dist = np.sqrt(np.sum((p1 - p2) ** 2))
+                distances[idx] = dist
                 idx += 1
+                
         return distances
 
     def calculate_angles(self, landmarks):
-        """Calculate angles between finger joints for better recognition"""
+        """Calculate angles between finger joints"""
         angles = []
         # Define finger joint connections (indices)
         finger_joints = [
@@ -124,39 +134,48 @@ class HandRecognition:
         ]
         
         for p1, p2, p3 in finger_joints:
-            v1 = np.array([landmarks[p1][0] - landmarks[p2][0], 
-                          landmarks[p1][1] - landmarks[p2][1]])
-            v2 = np.array([landmarks[p3][0] - landmarks[p2][0], 
-                          landmarks[p3][1] - landmarks[p2][1]])
+            v1 = np.array([
+                landmarks[p1][0] - landmarks[p2][0],
+                landmarks[p1][1] - landmarks[p2][1]
+            ], dtype=np.float32)
+            
+            v2 = np.array([
+                landmarks[p3][0] - landmarks[p2][0],
+                landmarks[p3][1] - landmarks[p2][1]
+            ], dtype=np.float32)
             
             # Normalize vectors
             v1_norm = np.linalg.norm(v1)
             v2_norm = np.linalg.norm(v2)
-            if v1_norm == 0 or v2_norm == 0:
-                angles.append(0)
+            
+            if v1_norm == 0.0 or v2_norm == 0.0:
+                angles.append(0.0)
                 continue
-                
+            
             v1_normalized = v1 / v1_norm
             v2_normalized = v2 / v2_norm
             
             # Calculate angle
-            angle = np.arccos(np.clip(np.dot(v1_normalized, v2_normalized), -1.0, 1.0))
-            angles.append(angle)
+            dot_product = np.dot(v1_normalized, v2_normalized)
+            angle = np.arccos(np.clip(dot_product, -1.0, 1.0))
+            angles.append(float(angle))
             
         return angles
 
     def calculate_landmark_similarity(self, landmarks1, landmarks2_features):
-        """Optimized similarity calculation using pre-computed features"""
-        # Calculate features for current landmarks
-        angles1 = np.array(self.calculate_angles(landmarks1))
-        rel_dist1 = self.get_relative_distances(landmarks1)
+        """Calculate similarity between landmarks"""
+        angles1 = np.array(self.calculate_angles(landmarks1), dtype=np.float32)
+        rel_dist1 = np.array(self.get_relative_distances(landmarks1), dtype=np.float32)
         
-        # Compare with pre-computed features
-        angle_diff = np.mean(np.abs(angles1 - landmarks2_features['angles']))
-        rel_dist_diff = np.mean(np.abs(rel_dist1 - landmarks2_features['rel_distances']))
+        angles2 = np.array(landmarks2_features['angles'], dtype=np.float32)
+        rel_dist2 = np.array(landmarks2_features['rel_distances'], dtype=np.float32)
+        
+        # Calculate differences
+        angle_diff = np.mean(np.abs(angles1 - angles2))
+        rel_dist_diff = np.mean(np.abs(rel_dist1 - rel_dist2))
         
         # Combine similarities with weights
-        return angle_diff * 0.6 + rel_dist_diff * 0.4
+        return float(angle_diff * 0.6 + rel_dist_diff * 0.4)
 
     def recognize_gesture(self, current_landmarks):
         """Optimized gesture recognition"""
@@ -249,55 +268,74 @@ class HandRecognition:
         # Process the frame
         results = self.hands.process(rgb_frame)
         
-        # Display complete sentence and current word
+        # Create a semi-transparent overlay
+        overlay = frame.copy()
+        
+        # Add a dark semi-transparent background for better text visibility
+        cv2.rectangle(overlay, (0, 0), (400, 250), (0, 0, 0), -1)
+        cv2.addWeighted(overlay, 0.3, frame, 0.7, 0, frame)
+        
+        # Display complete sentence and current word with better formatting
         display_text = self.sentence + self.current_word
-        # Split text into lines if it's too long
         max_chars_per_line = 40
         text_lines = [display_text[i:i+max_chars_per_line] 
                      for i in range(0, len(display_text), max_chars_per_line)]
         
-        for i, line in enumerate(text_lines):
+        # Add text background
+        text_y = 40
+        for line in text_lines:
+            text_size = cv2.getTextSize(line, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)[0]
+            cv2.rectangle(frame, (8, text_y - 25), (text_size[0] + 15, text_y + 5), (50, 50, 50), -1)
             cv2.putText(
                 frame,
                 line,
-                (10, 40 + i*30),
+                (10, text_y),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.7,
                 (255, 255, 255),
                 2
             )
+            text_y += 30
         
-        # Display word suggestions if available
+        # Display word suggestions with better styling
         if self.word_suggestions:
             y_pos = 200
+            # Add suggestion header
             cv2.putText(
                 frame,
                 "Suggestions:",
                 (10, y_pos),
                 cv2.FONT_HERSHEY_SIMPLEX,
                 0.7,
-                (255, 255, 0),
+                (255, 223, 0),  # Golden yellow
                 2
             )
+            # Add suggestions with highlight for the best match
             for i, suggestion in enumerate(self.word_suggestions, 1):
                 y_pos += 30
+                # Background for suggestion
+                text_size = cv2.getTextSize(f"{i}. {suggestion}", cv2.FONT_HERSHEY_SIMPLEX, 0.7, 2)[0]
+                cv2.rectangle(frame, (28, y_pos - 25), (text_size[0] + 35, y_pos + 5), 
+                            (40, 40, 40) if i > 1 else (0, 100, 0), -1)
                 cv2.putText(
                     frame,
                     f"{i}. {suggestion}",
                     (30, y_pos),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     0.7,
-                    (255, 255, 0),
+                    (255, 255, 0) if i > 1 else (255, 255, 255),
                     2
                 )
         
         if results.multi_hand_landmarks:
             for hand_landmarks in results.multi_hand_landmarks:
-                # Draw landmarks
+                # Draw landmarks with custom styling
                 self.mp_draw.draw_landmarks(
                     frame,
                     hand_landmarks,
-                    self.mp_hands.HAND_CONNECTIONS
+                    self.mp_hands.HAND_CONNECTIONS,
+                    self.mp_draw.DrawingSpec(color=(0, 255, 255), thickness=2, circle_radius=2),
+                    self.mp_draw.DrawingSpec(color=(255, 255, 0), thickness=2)
                 )
                 
                 # Recognize gesture
@@ -306,11 +344,12 @@ class HandRecognition:
                 # Add gesture to text with delay
                 self.add_gesture_to_text(gesture)
                 
-                # Display gesture with confidence visualization
-                confidence_color = (0, 255, 0) if gesture != "Unknown" else (0, 165, 255)
+                # Display gesture with modern styling
+                confidence_color = (0, 255, 150) if gesture != "Unknown" else (0, 165, 255)
+                cv2.rectangle(frame, (8, 55), (300, 85), (50, 50, 50), -1)
                 cv2.putText(
                     frame,
-                    f"Current Gesture: {gesture}",
+                    f"Gesture: {gesture}",
                     (10, 80),
                     cv2.FONT_HERSHEY_SIMPLEX,
                     1,
@@ -318,27 +357,36 @@ class HandRecognition:
                     2
                 )
                 
-                # Display timer if gesture is being held
+                # Display progress bar for gesture hold
                 if self.current_gesture != "Unknown" and not self.gesture_confirmed:
                     time_held = time.time() - self.last_gesture_time
                     if time_held < self.gesture_delay:
                         progress = int((time_held / self.gesture_delay) * 100)
+                        # Progress bar background
+                        cv2.rectangle(frame, (10, 100), (210, 120), (50, 50, 50), -1)
+                        # Progress bar fill
+                        bar_width = int(200 * (progress / 100))
+                        cv2.rectangle(frame, (10, 100), (10 + bar_width, 120), (0, 255, 255), -1)
+                        # Progress text
                         cv2.putText(
                             frame,
-                            f"Hold: {progress}%",
-                            (10, 120),
+                            f"{progress}%",
+                            (220, 115),
                             cv2.FONT_HERSHEY_SIMPLEX,
-                            1,
+                            0.5,
                             (0, 255, 255),
                             2
                         )
         
-        # Calculate and display FPS
+        # Calculate and display FPS with styling
         current_time = time.time()
         fps = 1 / (current_time - self.prev_frame_time)
         self.prev_frame_time = current_time
         self.fps_buffer.append(fps)
         avg_fps = sum(self.fps_buffer) / len(self.fps_buffer)
+        
+        # FPS counter with background
+        cv2.rectangle(frame, (8, 135), (120, 165), (50, 50, 50), -1)
         cv2.putText(
             frame,
             f"FPS: {int(avg_fps)}",
@@ -391,7 +439,7 @@ class HandRecognition:
 
 if __name__ == "__main__":
     try:
-        recognizer = HandRecognition()
+        recognizer = CustomHandGestureRecognizer()
         recognizer.run()
     except FileNotFoundError:
         print("\nPlease run gesture_trainer.py first to create your custom gesture dataset!")

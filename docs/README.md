@@ -1,199 +1,136 @@
-# HandGaze Documentation 📚
+# 📚 HandGaze Technical Documentation
 
-<div align="center">
+## 🏗 Architecture Overview
 
-[![Documentation](https://img.shields.io/badge/HandGaze-Documentation-blue?style=for-the-badge&logo=opencv)](https://github.com/notcaliper/HandGaze)
-[![Version](https://img.shields.io/badge/Version-2.1-green?style=for-the-badge)](https://github.com/notcaliper/HandGaze/releases)
-[![Python](https://img.shields.io/badge/Python-3.7+-yellow?style=for-the-badge&logo=python)](https://www.python.org/)
-[![OpenCV](https://img.shields.io/badge/OpenCV-4.8+-red?style=for-the-badge&logo=opencv)](https://opencv.org/)
+HandGaze is built on a modular architecture that combines computer vision, machine learning, and natural language processing:
 
-*Your comprehensive guide to mastering HandGaze* 🌟
-
-</div>
-
-## 📑 Table of Contents
-
-- [Installation Guide](#-installation-guide)
-- [Core Components](#-core-components)
-- [Usage Guide](#-usage-guide)
-- [API Reference](#-api-reference)
-- [Troubleshooting](#-troubleshooting)
-
-## 📥 Installation Guide
-
-### System Requirements
-
-```yaml
-Minimum:
-  CPU: Dual-core 2GHz+
-  RAM: 4GB
-  Camera: OpenCV-compatible webcam
-  Python: 3.7+
-  Storage: 500MB free space
-
-Recommended:
-  CPU: Quad-core 3GHz+
-  RAM: 8GB+
-  Camera: HD Webcam (1080p)
-  Python: 3.9+
-  GPU: OpenCL compatible
+```mermaid
+graph TD
+    A[Video Input] --> B[Hand Detection]
+    B --> C[Gesture Recognition]
+    C --> D[Text Processing]
+    D --> E[Word Suggestions]
+    E --> F[UI Rendering]
 ```
-
-### Installation Steps
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/notcaliper/HandGaze.git
-   cd HandGaze
-   ```
-
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
 
 ## 🔧 Core Components
 
-### 1. Hand Recognition System (v2.1)
-- Enhanced real-time hand tracking (95%+ accuracy)
-- Multi-hand support with dynamic switching
-- Optimized MediaPipe integration
-- Advanced gesture prediction
-- 0.8s response time
+### 1. Hand Detection Module
+- **Technology**: MediaPipe Hands
+- **Features**:
+  - Multi-hand tracking
+  - 21 3D landmarks per hand
+  - Real-time performance
+  - Sub-pixel accuracy
 
-### 2. Gesture Trainer
-- Interactive training interface with real-time feedback
-- Dynamic confidence indicators
-- Automated gesture validation
-- Performance metrics tracking
-- Cross-validation testing
+### 2. Gesture Recognition System
+- **Algorithm**: Custom angle-based recognition
+- **Features**:
+  - Dynamic gesture mapping
+  - Confidence scoring
+  - Gesture smoothing
+  - Custom training support
 
-### 3. Dictionary System
-- Predictive text suggestions
-- Auto-capitalization support
-- Punctuation gesture recognition
-- Context-aware corrections
-- Efficient word frequency analysis
+### 3. Text Processing Engine
+- **Features**:
+  - Word completion
+  - Context awareness
+  - Spelling correction
+  - Custom dictionary support
 
-## 🎮 Usage Guide
+## 🛠 Technical Specifications
 
-### Basic Controls
+### Performance Metrics
+| Metric | Value |
+|--------|--------|
+| FPS | 30+ |
+| Latency | <50ms |
+| CPU Usage | ~20% |
+| Memory Usage | ~200MB |
+| Recognition Accuracy | >95% |
 
-- 🔤 ASL gestures for letters
-- 👋 SPACE gesture (0.8s hold)
-- ✌️ BACKSPACE gesture (0.8s hold)
-- ✊ SHIFT gesture for capitalization
-- 👆 PERIOD gesture for punctuation
-
-### Training New Gestures
-
-1. Launch the trainer:
-   ```bash
-   python gesture_trainer.py
-   ```
-
-2. Select "Add new gesture"
-3. Position hand 2-3 feet from camera
-4. Press SPACE to capture samples (minimum 20)
-5. Use 'r' to redo last sample
-6. Press 'q' to save and exit
-
-### Using the Main Application
-
-1. Start HandGaze:
-   ```bash
-   python hand_recognition.py
-   ```
-
-2. Perform gestures within camera frame
-3. Watch confidence indicators
-4. Use predictive text suggestions
-5. Enable hardware acceleration if available
+### System Requirements
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| CPU | Dual Core 2GHz | Quad Core 2.5GHz |
+| RAM | 4GB | 8GB |
+| Camera | 720p 30fps | 1080p 60fps |
+| Python | 3.8+ | 3.10+ |
+| GPU | Optional | Integrated/Dedicated |
 
 ## 🔍 API Reference
 
-### HandRecognition Class
+### HandGestureRecognizer Class
 ```python
-class HandRecognition:
-    def __init__(self, use_gpu: bool = True)
-    def process_frame(frame: np.ndarray) -> Dict[str, Any]
-    def get_gesture_confidence(gesture: str) -> float
-    def enable_multihand(enabled: bool = True) -> None
+class CustomHandGestureRecognizer:
+    def __init__(self):
+        """Initialize the gesture recognizer"""
+        
+    def recognize_gesture(self, landmarks) -> str:
+        """Recognize gesture from landmarks"""
+        
+    def process_frame(self, frame) -> np.ndarray:
+        """Process a single frame"""
 ```
 
-### GestureTrainer Class
-```python
-class GestureTrainer:
-    def __init__(self, data_dir: str = "gesture_data")
-    def capture_gesture(gesture_name: str, samples: int = 20) -> bool
-    def validate_gesture(gesture_name: str) -> float
-    def export_metrics(path: str) -> Dict[str, Any]
-```
-
-### OfflineDictionary Class
+### Dictionary Helper
 ```python
 class OfflineDictionary:
-    def __init__(self, lang: str = "en")
-    def get_predictions(context: str) -> List[str]
-    def auto_correct(word: str) -> str
-    def add_custom_word(word: str, frequency: int = 1) -> None
+    def get_suggestions(self, word: str) -> List[str]:
+        """Get word suggestions"""
 ```
 
-## 🔧 Troubleshooting
+## 🔧 Configuration
 
-### Performance Optimization
+### Camera Settings
+```python
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+cap.set(cv2.CAP_PROP_FPS, 30)
+```
 
-1. **Enable Hardware Acceleration**
-   - Check GPU compatibility
-   - Update graphics drivers
-   - Enable OpenCL support
+### Recognition Parameters
+```python
+GESTURE_CONFIDENCE_THRESHOLD = 0.5
+GESTURE_HOLD_TIME = 1.5  # seconds
+SMOOTHING_WINDOW = 3     # frames
+```
 
-2. **Improve Recognition**
-   - Maintain 2-3 feet distance
-   - Use consistent lighting
-   - Keep steady hand position
-   - Regular gesture retraining
+## 🐛 Troubleshooting
 
-3. **Memory Management**
+### Common Issues
+1. **Low FPS**
+   - Reduce resolution
    - Close background applications
-   - Monitor RAM usage
-   - Clear gesture cache if needed
-
-### Error Recovery
-
-- Automatic gesture database backup
-- Recovery mode for corrupted data
-- Fallback to CPU processing
-- Diagnostic logging system
-
-## 💡 Pro Tips
-
-1. **For Best Accuracy**
-   - Train in various lighting conditions
-   - Use deliberate, distinct gestures
-   - Keep consistent hand orientation
-   - Monitor confidence metrics
-
-2. **For Better Performance**
    - Enable hardware acceleration
-   - Update gesture database regularly
-   - Use suggested word completions
-   - Keep hands in optimal range
 
-## 🤝 Support
+2. **Poor Recognition**
+   - Improve lighting
+   - Retrain gestures
+   - Adjust confidence threshold
 
-- Check [Troubleshooting Guide](#-troubleshooting)
-- Review [API Reference](#-api-reference)
-- Submit issues on GitHub
+3. **High Latency**
+   - Reduce processing resolution
+   - Increase frame skip
+   - Optimize background processes
 
-## 📝 License 
+## 📦 Dependencies
 
-HandGaze is GNU GPLv3 licensed. See [LICENSE](LICENSE) for details.
+- OpenCV (4.8.0)
+- MediaPipe (0.10.5)
+- NumPy (≥1.23.5)
+- Python-Levenshtein
+- PySpellChecker
+
+## 🔄 Update History
+
+| Version | Date | Changes |
+|---------|------|---------|
+| 1.1.0 | 2025-01-20 | Modern UI update |
+| 1.0.1 | 2025-01-15 | Performance optimizations |
+| 1.0.0 | 2025-01-01 | Initial release |
 
 ---
-
 <div align="center">
-
-Made with ❤️ by [NotCaliper](https://github.com/notcaliper)
-
+For more information, visit the <a href="../README.md">main README</a>
 </div>

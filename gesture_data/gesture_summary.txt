@@ -3,105 +3,79 @@ Gesture Training Summary
 
 Gesture: A
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806636
 -----------------
 Gesture: B
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806658
 -----------------
 Gesture: C
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806660
 -----------------
 Gesture: D
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806661
 -----------------
 Gesture: E
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806663
 -----------------
 Gesture: F
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806665
 -----------------
 Gesture: G
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806667
 -----------------
 Gesture: H
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806668
 -----------------
 Gesture: I
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806670
 -----------------
 Gesture: J
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806672
 -----------------
 Gesture: K
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806674
 -----------------
 Gesture: L
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806675
 -----------------
 Gesture: M
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806677
 -----------------
 Gesture: N
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806678
 -----------------
 Gesture: O
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806680
 -----------------
 Gesture: P
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806684
 -----------------
 Gesture: Q
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806685
 -----------------
 Gesture: R
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806687
 -----------------
 Gesture: S
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806688
 -----------------
 Gesture: T
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806690
 -----------------
 Gesture: U
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806691
 -----------------
 Gesture: V
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806692
 -----------------
 Gesture: W
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806694
 -----------------
 Gesture: X
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806696
 -----------------
 Gesture: Y
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806697
 -----------------
 Gesture: Z
 Samples: 50
-Last updated: 2025-01-15T23:21:12.806699
 -----------------
