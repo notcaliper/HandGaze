@@ -1,298 +1,158 @@
-# HandGaze Features Guide 🌟
+# ✨ HandGaze Features
 
-<div align="center">
+## 🎯 Core Features
 
-[![HandGaze Features](https://img.shields.io/badge/HandGaze-Features-blue?style=for-the-badge&logo=opencv)](https://github.com/notcaliper/HandGaze)
-[![Version](https://img.shields.io/badge/Version-2.0-green?style=for-the-badge)](https://github.com/notcaliper/HandGaze/releases)
-[![Stars](https://img.shields.io/badge/Stars-⭐⭐⭐⭐⭐-yellow?style=for-the-badge)](https://github.com/notcaliper/HandGaze)
+### 1. Real-time Hand Detection
+- **High-Performance Tracking**
+  - 30+ FPS processing
+  - Sub-50ms latency
+  - Multi-hand support
+  - 21 landmark points per hand
 
-*Transform your hand gestures into seamless digital communication* ✨
+- **Advanced Recognition**
+  - Dynamic gesture mapping
+  - Confidence scoring
+  - Gesture smoothing
+  - Noise reduction
+
+### 2. Smart Text Input
+- **Gesture-to-Text**
+  - Letter gestures (A-Z)
+  - Command gestures (Space, Backspace)
+  - Punctuation support
+  - Case sensitivity
+
+- **Word Processing**
+  - Real-time word suggestions
+  - Spelling correction
+  - Context awareness
+  - Custom dictionary support
+
+### 3. Modern User Interface
+- **Visual Feedback**
+  - Hand landmark visualization
+  - Gesture confidence display
+  - Progress bar for gesture hold
+  - FPS counter
+
+- **Text Display**
+  - Clear text rendering
+  - Word suggestions panel
+  - Status indicators
+  - Error messages
+
+## 🚀 Advanced Features
+
+### 1. Performance Optimization
+- **Hardware Acceleration**
+  - OpenCV optimization
+  - Multi-threading support
+  - Memory management
+  - Frame skipping
+
+- **Resource Management**
+  - Adaptive processing
+  - Background optimization
+  - Cache management
+  - Memory cleanup
+
+### 2. Custom Gesture Training
+- **Training System**
+  - Interactive training mode
+  - Multiple samples per gesture
+  - Validation system
+  - Export/Import support
+
+- **Gesture Management**
+  - Add/Remove gestures
+  - Modify existing gestures
+  - Gesture library
+  - Version control
+
+### 3. Dictionary System
+- **Word Processing**
+  - Offline dictionary
+  - Custom word additions
+  - Context-based suggestions
+  - Learning capability
+
+- **Language Support**
+  - English dictionary
+  - Extensible framework
+  - Custom vocabulary
+  - Abbreviation support
+
+## 🛠 Technical Features
+
+### 1. Recognition System
+```python
+# Gesture recognition with confidence
+def recognize_gesture(landmarks):
+    confidence = calculate_confidence(landmarks)
+    if confidence > threshold:
+        return map_gesture(landmarks)
+    return "Unknown"
+```
+
+### 2. Word Suggestions
+```python
+# Smart word suggestions
+def get_suggestions(word):
+    base_words = dictionary.find_similar(word)
+    return rank_by_context(base_words)
+```
+
+### 3. Performance Monitoring
+```python
+# FPS and performance tracking
+def monitor_performance():
+    fps = calculate_fps()
+    memory = get_memory_usage()
+    return Performance(fps, memory)
+```
+
+## 🎮 Usage Examples
+
+### Basic Text Input
+```python
+# Start recognition
+recognizer = HandGestureRecognizer()
+while True:
+    gesture = recognizer.get_gesture()
+    text = process_gesture(gesture)
+    display_text(text)
+```
+
+### Custom Training
+```python
+# Train new gesture
+trainer = GestureTrainer()
+trainer.record_samples("NEW_GESTURE")
+trainer.validate_gesture()
+trainer.save_gesture()
+```
+
+## 🔄 Future Updates
+
+### Planned Features
+1. **Multi-language Support**
+   - Additional language dictionaries
+   - Language-specific gestures
+   - Translation support
+
+2. **Advanced UI**
+   - Customizable themes
+   - Gesture visualization
+   - Interactive tutorials
+   - Performance dashboard
+
+3. **Smart Features**
+   - Predictive text
+   - Gesture combinations
+   - Custom shortcuts
+   - Cloud sync
 
 ---
-
-<img src="https://raw.githubusercontent.com/notcaliper/HandGaze/main/docs/features-demo.gif" width="600px" />
-
-</div>
-
 <div align="center">
-
-# 🎯 Feature Highlights
-
-| 🚀 Performance | 🎨 Interface | 🛠️ Technology |
-|:-------------:|:------------:|:-------------:|
-| 30+ FPS | Modern UI | MediaPipe |
-| Low Latency | Real-time Feedback | OpenCV |
-| Optimized Code | Intuitive Controls | TensorFlow |
-| Smart Caching | Visual Guides | YOLO |
-
-</div>
-
-## 🌟 Core Features
-
-<table>
-<tr>
-<td width="50%">
-
-### 👁️ Real-Time Recognition
-
-<div align="center">
-
-```mermaid
-graph TD
-    A[Camera] --> B[Detection]
-    B --> C[Analysis]
-    C --> D[Output]
-    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
-    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
-    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
-    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
-```
-
-- ⚡ High-Speed Processing
-- 🎯 Precise Detection
-- 📊 Real-time Metrics
-- 🔄 Continuous Tracking
-
-</div>
-
-</td>
-<td width="50%">
-
-### 🤖 Gesture System
-
-<div align="center">
-
-```mermaid
-graph TD
-    A[Gesture] --> B[Recognition]
-    B --> C[Processing]
-    C --> D[Action]
-    style A fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
-    style B fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
-    style C fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
-    style D fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
-```
-
-- 🔤 Full ASL Support
-- ✨ Custom Gestures
-- 📈 Accuracy Metrics
-- ⏱️ Smart Timing
-
-</div>
-
-</td>
-</tr>
-</table>
-
-## 💫 Smart Features
-
-<div align="center">
-
-<table>
-<tr>
-<td width="33%" align="center">
-
-### ⌨️ Text Input
-
-![Text Input](https://img.shields.io/badge/Input-Smart-blue?style=for-the-badge)
-
-- Word Building
-- Auto-Correction
-- Context Aware
-- Real-time Feedback
-
-</td>
-<td width="33%" align="center">
-
-### 📝 Sentence Creation
-
-![Sentences](https://img.shields.io/badge/Creation-Dynamic-green?style=for-the-badge)
-
-- Smart Spacing
-- Easy Editing
-- Line Wrapping
-- Word Flow
-
-</td>
-<td width="33%" align="center">
-
-### 🔍 Word Suggestions
-
-![Suggestions](https://img.shields.io/badge/Suggestions-Intelligent-purple?style=for-the-badge)
-
-- Real-time
-- Context-Based
-- Dictionary
-- Quick Select
-
-</td>
-</tr>
-</table>
-
-</div>
-
-## ⚡ Performance Features
-
-<div align="center">
-
-### System Performance
-
-<table>
-<tr>
-<td align="center" width="25%">
-
-#### 🎯 Accuracy
-95%+
-
-</td>
-<td align="center" width="25%">
-
-#### ⚡ FPS
-30+
-
-</td>
-<td align="center" width="25%">
-
-#### 📊 Latency
-<100ms
-
-</td>
-<td align="center" width="25%">
-
-#### 💻 CPU
-<30%
-
-</td>
-</tr>
-</table>
-
-</div>
-
-## 🎮 Controls & Gestures
-
-<div align="center">
-
-<table>
-<tr>
-<td width="25%" align="center">
-
-### 🔤 Letters
-ASL A-Z
-
-</td>
-<td width="25%" align="center">
-
-### ⌫ Backspace
-1.5s Hold
-
-</td>
-<td width="25%" align="center">
-
-### ␣ Space
-1.5s Hold
-
-</td>
-<td width="25%" align="center">
-
-### ✨ Custom
-User Defined
-
-</td>
-</tr>
-</table>
-
-</div>
-
-## 💡 Pro Tips
-
-<table>
-<tr>
-<td width="50%">
-
-### 🎯 Best Recognition
-
-<div align="center">
-
-```mermaid
-graph TD
-    A[Good Lighting] --> D[Success]
-    B[Clear View] --> D[Success]
-    C[Steady Hand] --> D[Success]
-    style A fill:#ff9999,stroke:#ff0000,stroke-width:2px,color:#990000,font-weight:bold
-    style B fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
-    style C fill:#9999ff,stroke:#0000ff,stroke-width:2px,color:#000099,font-weight:bold
-    style D fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
-```
-
-</div>
-
-</td>
-<td width="50%">
-
-### ⚡ Best Performance
-
-<div align="center">
-
-```mermaid
-graph TD
-    A[Practice] --> D[Mastery]
-    B[Use Tips] --> D[Mastery]
-    C[Stay Updated] --> D[Mastery]
-    style A fill:#ff99ff,stroke:#ff00ff,stroke-width:2px,color:#990099,font-weight:bold
-    style B fill:#99ffff,stroke:#00ffff,stroke-width:2px,color:#009999,font-weight:bold
-    style C fill:#ffff99,stroke:#ffff00,stroke-width:2px,color:#999900,font-weight:bold
-    style D fill:#99ff99,stroke:#00ff00,stroke-width:2px,color:#006600,font-weight:bold
-```
-
-</div>
-
-</td>
-</tr>
-</table>
-
-## 🔮 Coming Soon
-
-<div align="center">
-
-<table>
-<tr>
-<td align="center" width="25%">
-
-### 🌍
-Multi-language
-
-</td>
-<td align="center" width="25%">
-
-### 🔄
-Cloud Sync
-
-</td>
-<td align="center" width="25%">
-
-### ⚙️
-Custom Sequences
-
-</td>
-<td align="center" width="25%">
-
-### 📱
-Mobile Support
-
-</td>
-</tr>
-</table>
-
-</div>
-
----
-
-<div align="center">
-
-<h3>🌟 Ready to Transform Your Gestures into Digital Communication? 🌟</h3>
-
-[![Get Started](https://img.shields.io/badge/Get_Started-Now-blue?style=for-the-badge)](README.md)
-[![Documentation](https://img.shields.io/badge/Read-Docs-green?style=for-the-badge)](docs/README.md)
-[![Contribute](https://img.shields.io/badge/Contribute-Welcome-orange?style=for-the-badge)](CONTRIBUTING.md)
-
+For implementation details, see the <a href="README.md">Technical Documentation</a>
 </div>
