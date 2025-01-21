@@ -1,4 +1,4 @@
-opencv-python==4.8.0.76
+opencv-python==4.8.1.78
 numpy>=1.23.5,<2.0.0
 mediapipe==0.10.5
 pyspellchecker>=0.7.2
