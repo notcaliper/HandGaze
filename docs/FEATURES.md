@@ -85,6 +85,12 @@
 ## 🛠 Technical Features
 
 ### 1. Recognition System
+- **Environment**
+  - Python 3.11 optimized
+  - Enhanced performance with Python 3.11's faster CPython
+  - Improved error handling with Python 3.11 features
+  - Better exception groups support
+
 ```python
 # Gesture recognition with confidence
 def recognize_gesture(landmarks):

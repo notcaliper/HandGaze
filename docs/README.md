@@ -55,7 +55,7 @@ graph TD
 | CPU | Dual Core 2GHz | Quad Core 2.5GHz |
 | RAM | 4GB | 8GB |
 | Camera | 720p 30fps | 1080p 60fps |
-| Python | 3.8+ | 3.10+ |
+| Python | 3.11 | 3.11+ |
 | GPU | Optional | Integrated/Dedicated |
 
 ## 🔍 API Reference
