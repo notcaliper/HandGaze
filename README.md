@@ -28,7 +28,7 @@ HandGaze is a cutting-edge gesture-based text input system that allows users to 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/HandGaze.git
+git clone https://github.com/notcaliper/HandGaze.git
 cd HandGaze
 
 # Create and activate virtual environment
