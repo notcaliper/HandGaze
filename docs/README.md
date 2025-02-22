@@ -1,4 +1,4 @@
-# 📚 HandGaze Technical Documentation
+ # 📚 HandGaze Technical Documentation
 
 ## 🏗 Architecture Overview
 
@@ -55,8 +55,14 @@ graph TD
 | CPU | Dual Core 2GHz | Quad Core 2.5GHz |
 | RAM | 4GB | 8GB |
 | Camera | 720p 30fps | 1080p 60fps |
-| Python | 3.11 | 3.11+ |
+| Python | 3.9.3 | 3.9.3 - 3.11 |
+| MediaPipe | 0.10.5 | 0.10.5 |
 | GPU | Optional | Integrated/Dedicated |
+
+### Python Version Compatibility
+- **Recommended**: Python 3.9.3
+- **Supported Range**: 3.9.3 - 3.11
+- **Note**: MediaPipe works with Python 3.9.3 through 3.11, but 3.9.3 provides the most stable experience
 
 ## 🔍 API Reference
 
@@ -113,6 +119,11 @@ SMOOTHING_WINDOW = 3     # frames
    - Reduce processing resolution
    - Increase frame skip
    - Optimize background processes
+
+4. **MediaPipe Issues**
+   - Verify Python version compatibility (3.9.3 - 3.11)
+   - Check MediaPipe version (0.10.5)
+   - Consider downgrading to Python 3.9.3 if issues persist
 
 ## 📦 Dependencies
 
