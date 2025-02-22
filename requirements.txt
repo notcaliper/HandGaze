@@ -4,4 +4,3 @@ mediapipe
 pyspellchecker
 requests
 tqdm
-
