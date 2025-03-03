@@ -138,5 +138,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 <div align="center">
-Made with ❤️ by NotCaliper
+Made with ❤️ by HandGaze Team
 </div>
