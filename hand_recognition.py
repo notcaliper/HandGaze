@@ -70,12 +70,6 @@ class CustomHandGestureRecognizer:
         self.gesture_confirmed = False
         self.sentence = ""  # Add sentence variable to store complete text
         
-        # Add position tracking variables
-        self.last_hand_position = None
-        self.position_threshold = 0.02  # Minimum movement threshold
-        self.last_valid_gesture_time = time.time()
-        self.min_gesture_interval = 0.3  # Minimum time between gestures
-        
     def load_latest_gesture_data(self):
         """Load the most recent gesture data file"""
         data_dir = 'gesture_data'
@@ -183,85 +177,38 @@ class CustomHandGestureRecognizer:
         # Combine similarities with weights
         return float(angle_diff * 0.6 + rel_dist_diff * 0.4)
 
-    def get_hand_position(self, landmarks):
-        """Calculate the average position of key hand points"""
-        try:
-            if not landmarks or not hasattr(landmarks, 'landmark'):
-                return None
-            
-            # Use key points (wrist and fingertips) for position tracking
-            key_points = [0, 4, 8, 12, 16, 20]  # Wrist and fingertips
-            x_mean = sum(landmarks.landmark[i].x for i in key_points) / len(key_points)
-            y_mean = sum(landmarks.landmark[i].y for i in key_points) / len(key_points)
-            return (x_mean, y_mean)
-        except Exception:
-            return None
-
-    def has_moved_enough(self, current_pos):
-        """Check if hand has moved enough from last position"""
-        try:
-            if self.last_hand_position is None or current_pos is None:
-                return True
-            
-            dx = current_pos[0] - self.last_hand_position[0]
-            dy = current_pos[1] - self.last_hand_position[1]
-            distance = (dx * dx + dy * dy) ** 0.5
-            return distance > self.position_threshold
-        except Exception:
-            return True
-
     def recognize_gesture(self, current_landmarks):
-        """Optimized gesture recognition with movement detection"""
-        try:
-            if not current_landmarks:
-                self.last_gesture = "Unknown"
-                return "Unknown"
-            
-            # Process only every nth frame
-            self.frame_count += 1
-            if self.frame_count % self.process_every_n_frames != 0:
-                return self.last_gesture
-            
-            current_time = time.time()
-            current_pos = self.get_hand_position(current_landmarks)
-            
-            # If we couldn't get a valid hand position, return last gesture
-            if current_pos is None:
-                return self.last_gesture
-            
-            # Check if enough time has passed and hand has moved enough
-            if (current_time - self.last_valid_gesture_time < self.min_gesture_interval or
-                not self.has_moved_enough(current_pos)):
-                return self.last_gesture
-            
-            # Convert current landmarks to list format
-            current_landmarks_list = [[lm.x, lm.y] for lm in current_landmarks.landmark]
-            
-            # Compare with pre-computed features
-            best_score = float('inf')
-            best_gesture = "Unknown"
-            
-            for gesture_name, gesture_features in self.precomputed_gesture_features.items():
-                scores = [self.calculate_landmark_similarity(current_landmarks_list, features) 
-                         for features in gesture_features[:3]]
-                avg_score = np.mean(scores)
-                
-                if avg_score < best_score:
-                    best_score = avg_score
-                    best_gesture = gesture_name
-            
-            if best_score > 0.25:
-                best_gesture = "Unknown"
-            else:
-                # Update tracking variables only for valid gestures
-                self.last_valid_gesture_time = current_time
-                self.last_hand_position = current_pos
-            
-            self.last_gesture = best_gesture
-            return best_gesture
-        except Exception as e:
-            print(f"Error in recognize_gesture: {str(e)}")
+        """Optimized gesture recognition"""
+        if not current_landmarks:
             return "Unknown"
+        
+        # Process only every nth frame
+        self.frame_count += 1
+        if self.frame_count % self.process_every_n_frames != 0:
+            return self.last_gesture
+            
+        # Convert current landmarks to list format
+        current_landmarks_list = [[lm.x, lm.y] for lm in current_landmarks.landmark]
+        
+        # Compare with pre-computed features
+        best_score = float('inf')
+        best_gesture = "Unknown"
+        
+        for gesture_name, gesture_features in self.precomputed_gesture_features.items():
+            # Compare with only the first few samples for each gesture
+            scores = [self.calculate_landmark_similarity(current_landmarks_list, features) 
+                     for features in gesture_features[:3]]  # Limit to first 3 samples
+            avg_score = np.mean(scores)
+            
+            if avg_score < best_score:
+                best_score = avg_score
+                best_gesture = gesture_name
+        
+        if best_score > 0.25:
+            best_gesture = "Unknown"
+        
+        self.last_gesture = best_gesture
+        return best_gesture
 
     def add_gesture_to_text(self, gesture: str) -> None:
         """
@@ -271,9 +218,8 @@ class CustomHandGestureRecognizer:
         
         # Only process if it's a valid gesture (not Unknown)
         if gesture != "Unknown":
-            # If this is a new gesture or enough time has passed
-            if (gesture != self.current_gesture and 
-                current_time - self.last_valid_gesture_time >= self.min_gesture_interval):
+            # If this is a new gesture
+            if gesture != self.current_gesture:
                 self.current_gesture = gesture
                 self.gesture_confirmed = False
                 self.last_gesture_time = current_time
@@ -312,13 +258,13 @@ class CustomHandGestureRecognizer:
                         self.word_suggestions = self.dictionary_helper.get_suggestions(self.current_word)[:3]
                 
                 self.gesture_confirmed = True
-                self.last_gesture_time = current_time  # Update the last gesture time after confirmation
                 print(f"Current word: {self.current_word}")
                 print(f"Suggestions: {self.word_suggestions}")
     
     def process_frame(self, frame):
-        # Convert BGR to RGB
+        # Convert BGR to RGB and ensure array is contiguous
         rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        rgb_frame = np.ascontiguousarray(rgb_frame)
         
         # Process the frame
         results = self.hands.process(rgb_frame)
