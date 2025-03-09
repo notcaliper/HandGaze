@@ -23,6 +23,8 @@ HandGaze is a cutting-edge gesture-based text input system that allows users to 
 - 🎨 Modern and intuitive UI
 - 🔄 Gesture training system
 - 📚 Offline dictionary support
+- 🛡️ Robust error handling and state management
+- 🔄 Automatic system recovery
 
 ## 🛠 Installation
 
@@ -51,23 +53,39 @@ pip install -r requirements.txt
    python hand_recognition.py
    ```
 
-## 🎯 Usage
+## 🎯 How to Use HandGaze
 
-1. **Launch the application**
-2. **Position your hand** in front of the camera
-3. **Make gestures** corresponding to letters or commands
-4. **Hold the gesture** briefly to confirm
-5. Use **SPACE** and **BACKSPACE** gestures for word completion
+1. **Start the application**:
+   - Run `python hand_recognition.py`
+   - Position your camera so it can clearly see your hand
+
+2. **Understanding the interface**:
+   - **READY** (Green): System ready for a new gesture
+   - **HOLD** (Yellow-Green): Hold the gesture until the bar fills
+   - **WAIT** (Red): System in cooldown, wait for the bar to complete
+
+3. **Using gestures**:
+   - Position your hand to form a letter gesture
+   - Hold the gesture until the progress bar completes
+   - Wait for the cooldown period to finish before making the next gesture
+   - Use the SPACE and BACKSPACE gestures for word completion and correction
+
+4. **Word suggestions**:
+   - The system will show word suggestions as you type
+   - The most likely word will be highlighted
+   - Use the SPACE gesture to accept the suggested word
+
+## 📚 Documentation
+
+- [System Overview](docs/SYSTEM_OVERVIEW.md) - Detailed explanation of the HandGaze system
+- [Bug Fixes and Technical Details](docs/BUG_FIXES.md) - Information about recent improvements
+- [Training Guide](docs/TRAINING.md) - Guide for training your own gesture set
+- [Features Documentation](docs/FEATURES.md) - Description of all features
+- [Technical Documentation](docs/README.md) - Technical information for developers
 
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guidelines](docs/CONTRIBUTING.md) for details.
-
-## 📚 Documentation
-
-- [Features Documentation](docs/FEATURES.md)
-- [Technical Documentation](docs/README.md)
-- [Training Guide](docs/TRAINING.md)
 
 ## 📝 License
 
