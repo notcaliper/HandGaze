@@ -9,7 +9,7 @@ class OfflineDictionary:
         self.word_dict = self.load_dictionary()
         self.spell = SpellChecker()
         
-    def load_dictionary(self) -> Dict:
+    def load_dictionary(self) -> Dict[str, int]:
         """Load the dictionary from file or create if not exists"""
         os.makedirs('dictionary_data', exist_ok=True)
         
@@ -17,47 +17,53 @@ class OfflineDictionary:
             with open(self.dictionary_file, 'r') as f:
                 return json.load(f)
         else:
-            # Create basic dictionary from SpellChecker's word frequency
-            word_dict = {}
-            for word in self.spell.word_frequency.dictionary:
-                word_dict[word] = {
-                    'word': word,
-                    'frequency': self.spell.word_frequency.dictionary[word]
-                }
+            # Create compact dictionary from SpellChecker's word frequency
+            word_dict = {
+                word: freq 
+                for word, freq in self.spell.word_frequency.dictionary.items()
+            }
             
             # Save dictionary
             with open(self.dictionary_file, 'w') as f:
-                json.dump(word_dict, f)
+                json.dump(word_dict, f, separators=(',', ':'))
             
             return word_dict
     
     def get_word_info(self, word: str) -> Optional[Dict]:
-        """Get information about a word"""
-        return self.word_dict.get(word.lower())
+        """Get information about a word (backwards compatibility)"""
+        freq = self.word_dict.get(word.lower())
+        if freq is not None:
+            return {
+                'word': word.lower(),
+                'frequency': freq,
+                'length': len(word)
+            }
+        return None
     
     def get_suggestions(self, word: str) -> List[str]:
         """Get spelling suggestions for a word"""
-        suggestions = list(self.spell.candidates(word))
-        # Sort suggestions by frequency
-        return sorted(suggestions, 
-                     key=lambda x: self.word_dict.get(x, {}).get('frequency', 0),
+        candidates = self.spell.candidates(word)
+        if not candidates:
+            return []
+            
+        # Sort suggestions by frequency stored in our compact dict
+        return sorted(list(candidates), 
+                     key=lambda x: self.word_dict.get(x.lower(), 0),
                      reverse=True)[:3]
     
     def is_valid_word(self, word: str) -> bool:
         """Check if a word is valid"""
         return word.lower() in self.word_dict
     
-    def add_word(self, word: str, info: Dict = None):
+    def add_word(self, word: str, frequency: int = 1):
         """Add a new word to the dictionary"""
-        if info is None:
-            info = {'word': word}
-        self.word_dict[word.lower()] = info
+        self.word_dict[word.lower()] = frequency
         self._save_dictionary()
     
     def _save_dictionary(self):
-        """Save the dictionary to file"""
+        """Save the dictionary to file in compact format"""
         with open(self.dictionary_file, 'w') as f:
-            json.dump(self.word_dict, f)
+            json.dump(self.word_dict, f, separators=(',', ':'))
 
 # Create dictionary data file if running this script directly
 if __name__ == "__main__":
