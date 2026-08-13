@@ -75,6 +75,7 @@ dictionary_data/*.json
 *.gif
 *.bmp
 *.tiff
+*.task
 
 # Distribution / packaging
 .Python

@@ -7,6 +7,7 @@ from typing import Dict, List, Optional
 
 import cv2
 import mediapipe as mp
+import mediapipe_compat  # pylint: disable=unused-import
 import numpy as np
 
 from offline_dictionary import OfflineDictionary

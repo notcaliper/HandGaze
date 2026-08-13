@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import os
 import mediapipe as mp
+import mediapipe_compat
 import pickle
 from typing import List, Dict
 from datetime import datetime
